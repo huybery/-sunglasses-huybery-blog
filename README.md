@@ -1,2 +1,2 @@
-# -sunglasses-huybery-blog
+# huybery-blog
 :neckbeard: welcome fork or start
