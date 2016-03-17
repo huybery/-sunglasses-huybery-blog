@@ -1,0 +1,13 @@
+dominate==2.1.17
+Flask==0.10.1
+Flask-Bootstrap==3.3.5.7
+Flask-Moment==0.5.1
+Flask-SQLAlchemy==2.1
+Flask-WTF==0.12
+itsdangerous==0.24
+Jinja2==2.8
+MarkupSafe==0.23
+SQLAlchemy==1.0.12
+visitor==0.1.2
+Werkzeug==0.11.4
+WTForms==2.1
