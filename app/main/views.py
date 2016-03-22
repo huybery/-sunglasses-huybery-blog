@@ -3,6 +3,7 @@
 
 from datetime import datetime
 from flask import  render_template,session,redirect,url_for
+from flask.ext.login import login_required
 
 from . import main
 from .forms import NameForm
@@ -20,3 +21,4 @@ def index():
 
                            know=session.get('know',False),
                            current_time=datetime.utcnow()),200
+
