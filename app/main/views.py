@@ -16,9 +16,8 @@ def index():
     if form.validate_on_submit():
         session['name'] = form.name.data
         return redirect(url_for('.index'))
-    return render_template('hello.html',
+    return render_template('base.html',
                            form=form,
-
                            know=session.get('know',False),
                            current_time=datetime.utcnow()),200
 
