@@ -29,3 +29,8 @@
     {% endfor %}
 </ul>
 {% endblock %}
+
+{% block script %}
+{{ super() }}
+{{ pagedown.include_pagedown() }}
+{% endblock %}
