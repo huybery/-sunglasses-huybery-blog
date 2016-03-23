@@ -14,10 +14,10 @@
     {% for post in posts %}
     <li class="post">
         <div class="post-date">
-            {{  moment(post.timestamp).calendar() }}
+            {{ moment(post.timestamp).format('YYYY-MM-DD HH:mm:ss') }}
         </div>
         <div class="post-head">
-            {{ post.head }}
+            <h1>{{ post.head }}</h1>
         </div>
         <div class="post-body">
             {% if post.body_html %}
