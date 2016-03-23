@@ -7,8 +7,8 @@ from flask.ext.login import login_required
 
 from . import main
 from .forms import PostForm
-# from .. import db
-# from ..models import User
+from .. import db
+from ..models import Post
 
 @main.route('/', methods=['GET','POST'])
 def index():
@@ -16,6 +16,7 @@ def index():
     if form.validate_on_submit():
         post = Post(body=form.body.data,head=form.head.data,tag=form.tag.data)
         db.session.add(post)
+        db.session.commit()
         return redirect(url_for('.index'))
     posts = Post.query.order_by(Post.timestamp.desc()).all()
     return render_template('index.html',form=form,posts=posts)

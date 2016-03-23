@@ -1,16 +1,20 @@
 {% extends "base.html" %}
-
-{% block title %}Flasky{% endblock %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block title %}huybery{% endblock %}
 
 {% block page_content %}
 <div class="page-header">
-    <h1>Hello, {% if current_user.is_authenticated %}{{ current_user.username }}{% else %}Stranger{% endif %}!</h1>
+    <h1>Hello,
+        {% if current_user.is_authenticated %}
+            {{ current_user.username }}</h1>
+            {{ wtf.quick_form(form) }}
+        <p>{% else %}Stranger{% endif %}</p>
 </div>
 <ul class="posts">
     {% for post in posts %}
     <li class="post">
         <div class="post-date">
-            {{  moment(post.timestamp).fromNow() }}
+            {{  moment(post.timestamp).calendar() }}
         </div>
         <div class="post-tag">
             {{ post.tag }}
