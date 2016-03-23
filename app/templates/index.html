@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
-{% block title %}huybery{% endblock %}
+{% block title %}uybery{% endblock %}
 
 {% block page_content %}
 <div class="page-header">
@@ -16,16 +16,24 @@
         <div class="post-date">
             {{  moment(post.timestamp).calendar() }}
         </div>
-        <div class="post-tag">
-            {{ post.tag }}
-        </div>
         <div class="post-head">
             {{ post.head }}
         </div>
         <div class="post-body">
-            {{ post.body }}
+            {% if post.body_html %}
+                {{ post.body_html | safe | truncate(200, True, end='...') }}
+            {% else %}
+                {{ post.body }}
+            {% endif %}
         </div>
+        <div>
+            <span class="label label-info">{{ post.tag }}</span>
+        </div>
+        <a href="{{ url_for('.post',id=post.id) }}">
+            <span class="label label-success">快点我！</span>
+        </a>
     </li>
+        <hr />
     {% endfor %}
 </ul>
 {% endblock %}
