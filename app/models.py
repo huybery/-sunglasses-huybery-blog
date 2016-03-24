@@ -49,7 +49,7 @@ class Post(db.Model):
     body = db.Column(db.Text)
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     head = db.Column(db.String(64),index=True)
-    tag = db.Column(db.String(64),index=True)
+    item_id = db.Column(db.Integer, db.ForeignKey('items.id'))
     body_html = db.Column(db.Text)
 
     @staticmethod
@@ -68,3 +68,14 @@ class Post(db.Model):
         ))
 
 db.event.listen(Post.body, 'set', Post.on_change_body)
+
+class Item(db.Model):
+    __tablename__ = 'items'
+    id = db.Column(db.Integer, primary_key=True)
+    tag = db.Column(db.String(64))
+    posts = db.relationship('Post', backref='item', order_by)
+
+class Like(db.Model):
+    __tablename__ = 'likes'
+    id = db.Column(db.Integer, primary_key=True)
+    like_sum = db.Column(db.Integer)
