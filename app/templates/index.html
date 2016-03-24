@@ -1,14 +1,17 @@
 {% extends "base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
+{% import "_macros.html" as macros %}
 {% block title %}uybery{% endblock %}
 
 {% block page_content %}
 <div class="page-header">
-    <h1>Hello,
+    <h1>
         {% if current_user.is_authenticated %}
-            {{ current_user.username }}</h1>
+             (づ￣ ³￣)づ  {{ current_user.username }}
+            </h1>
+            <p>主人么么哒</p>
             {{ wtf.quick_form(form) }}
-        <p>{% else %}Stranger{% endif %}</p>
+        {% endif %}
 </div>
 <ul class="posts">
     {% for post in posts %}
@@ -36,6 +39,9 @@
         <hr />
     {% endfor %}
 </ul>
+<div class="pagination">
+    {{ macros.pagination_widget(pagination,'.index') }}
+</div>
 {% endblock %}
 
 {% block scripts %}
