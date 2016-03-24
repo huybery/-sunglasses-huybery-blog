@@ -60,6 +60,6 @@ def item(tag):
     for item in items:
         vector.append(item.posts[0])
     posts = vector
-    print posts
+    posts.reverse()
     return render_template('item.html', posts=posts)
 
