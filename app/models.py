@@ -73,7 +73,7 @@ class Item(db.Model):
     __tablename__ = 'items'
     id = db.Column(db.Integer, primary_key=True)
     tag = db.Column(db.String(64))
-    posts = db.relationship('Post', backref='item', order_by)
+    posts = db.relationship('Post', backref='item')
 
 class Like(db.Model):
     __tablename__ = 'likes'
