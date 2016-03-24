@@ -1,6 +1,8 @@
 # huybery-blog
 :neckbeard: welcome fork or start (2016.3.16
 
+:muscle: 构建基本路由，使用bootstrap （2016.3.17
+
 :bear: 开发进度有点慢，sad (2016.3.18
 
 :relieved: 构建基本结构，配置选项，使用蓝本 （2016.3.20
