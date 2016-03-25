@@ -33,7 +33,7 @@
 
 .go_up{
     position: fixed;
-    bottom: 1%;
+    bottom: 0px;
     right: 3%;
 }
 .go_up p{

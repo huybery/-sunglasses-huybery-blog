@@ -6,11 +6,9 @@
     {{ super() }}
     <link rel="shortcut icon" href="{{ url_for('static',filename = 'favicon.ico') }}" type="image/x-icon">
     <link rel="icon" href="{{ url_for('static',filename = 'favicon.ico') }}">
-    <link href="http://cdn.bootcss.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
     <link type="text/css" href="http://cdn.bootcss.com/flat-ui/2.2.2/css/flat-ui.css" rel="stylesheet">
     <script type="text/javascript" src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
     <script type="text/javascript" src="http://cdn.bootcss.com/headroom/0.7.0/headroom.min.js"></script>
-
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css') }}">
 
 {% endblock %}
@@ -67,7 +65,7 @@
         {% endfor %}
     </div>
     <div class="go_up" id="go_up">
-        <a href="#"><p><i class="glyphicon glyphicon-hand-up"></i></p></a>
+        <a href="#"><p><i class="glyphicon glyphicon-menu-up"></i></p></a>
     </div>
 {% endblock %}
 
