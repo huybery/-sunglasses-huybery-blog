@@ -1,4 +1,7 @@
 {% extends "bootstrap/base.html" %}
+
+
+
 {% block head %}
     {{ super() }}
     <link rel="shortcut icon" href="{{ url_for('static',filename = 'favicon.ico') }}" type="image/x-icon">
@@ -7,40 +10,37 @@
     <script type="text/javascript" src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
     <script type="text/javascript" src="http://cdn.bootcss.com/headroom/0.7.0/headroom.min.js"></script>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css') }}">
-    <style type="text/css">
-        .headroom {position: fixed;top: 0;left: 0;right: 0;transition: all .2s ease-in-out;}
-        .headroom--unpinned {top: -100px;}
-        .headroom--pinned {top: 0;}
-    </style>
 {% endblock %}
-{% block title %}uybery{% endblock %}
+{% block title %}huybery{% endblock %}
+
+
 
 {#nav#}
-
 {% block navbar %}
+    <div id="loading"></div>
     <header class="header">
-    <div class="navbar navbar-inverse" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
+        <div class="navbar navbar-inverse" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">huybery</a>
+                </button>
+                <a class="navbar-brand" href="/">huybery</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        {% if current_user.is_authenticated %}
+                            <li><a href="{{ url_for('auth.logout') }}">Sign Out</a> </li>
+                        {% else %}
+                            <li><a href="{{ url_for('auth.login') }}">Sign In</a> </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
         </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
-                {% if current_user.is_authenticated %}
-                    <li><a href="{{ url_for('auth.logout') }}">Sign Out</a> </li>
-                {% else %}
-                    <li><a href="{{ url_for('auth.login') }}">Sign In</a> </li>
-                {% endif %}
-            </ul>
-        </div>
-        </div>
-    </div>
     </header>
     <script type="text/javascript">
         var myElement = document.querySelector("header");
@@ -51,7 +51,6 @@
     </script>
     {% block page_image %}{% endblock %}
 {% endblock %}
-
 
 
 
@@ -69,8 +68,10 @@
 {% endblock %}
 
 
+
 {#js#}
 {% block scripts %}
     {{ super() }}
     {{ moment.include_moment() }}
+    <script type="text/javascript" src="{{ url_for('static',filename='js/main.js') }}"></script>
 {% endblock %}
