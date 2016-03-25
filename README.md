@@ -1,7 +1,9 @@
 # huybery-blog
+## 后端：
+
 :neckbeard: welcome fork or start (2016.3.16
 
-:muscle: 构建基本路由，使用bootstrap （2016.3.17
+:muscle: 构建基本路由，使用bootstrap来保护眼睛 （2016.3.17
 
 :bear: 开发进度有点慢，sad (2016.3.18
 
@@ -14,3 +16,7 @@
 :running: 增加了文章列表分页功能,增加了文章修改功能（管理员权限），使用Migrate数据库迁移（2016.3.24
 
  :sunglasses: 增加标签系统 一对多数据库建立 后端总算写的差不多了~ （2016.3.25
+
+## 前端
+ :sunglasses: （2016.3.25
+ - 增加下滑隐藏nav和上滑显示，页面简单美化
