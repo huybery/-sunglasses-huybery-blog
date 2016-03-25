@@ -1,0 +1,12 @@
+.navbar-inverse{
+    background-color: rgba(0,0,0,0.5);
+}
+
+
+.image_header{
+    background-image: url("http://7xs7qz.com1.z0.glb.clouddn.com/index_bg.jpg");
+    background-size: cover;
+    width: 100%;
+    height: 500px;
+    z-index: -1;
+}
