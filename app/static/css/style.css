@@ -30,3 +30,12 @@
 .page_title h5{
     line-height: 500px;
 }
+
+.go_up{
+    position: fixed;
+    bottom: 3%;
+    right: 3%;
+}
+.go_up p{
+    font-size:40px;
+}
