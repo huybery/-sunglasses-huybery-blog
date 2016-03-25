@@ -1,7 +1,7 @@
 # huybery-blog
-## Development Log
----
-### 后端：
+>## Development Log
+
+#### 后端：
 
 :neckbeard: welcome fork or start (2016.3.16
 
@@ -19,6 +19,6 @@
 
  :sunglasses: 增加标签系统 一对多数据库建立 后端总算写的差不多了~ （2016.3.25
 
-### 前端
+#### 前端
  :sunglasses: （2016.3.25
  - 增加下滑隐藏nav和上滑显示，页面简单美化
