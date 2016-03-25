@@ -22,3 +22,4 @@
 #### 前端
  :sunglasses: （2016.3.25
  - 增加下滑隐藏nav和上滑显示，页面简单美化
+ - 增加header image，底部pagination位置优化
