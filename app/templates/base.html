@@ -22,7 +22,7 @@
 {% block navbar %}
     <div id="loading"></div>
     <header class="header" id="header">
-        <div class="navbar navbar-inverse" role="navigation">
+        <div class="navbar navbar-inverse navbar-embossed" role="navigation">
             <div class="container">
                 <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -34,7 +34,12 @@
                 <a class="navbar-brand" href="/">huybery</a>
                 </div>
                 <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav ">
+
+                    </ul>
                     <ul class="nav navbar-nav navbar-right">
+                            <li><a href="/">Index</a></li>
+                            <li><a href="/">About</a></li>
                         {% if current_user.is_authenticated %}
                             <li><a href="{{ url_for('auth.logout') }}">Sign Out</a> </li>
                         {% else %}
@@ -61,7 +66,7 @@
             </div>
         {% endfor %}
     </div>
-    <div class="go_up">
+    <div class="go_up" id="go_up">
         <a href="#"><p><i class="glyphicon glyphicon-hand-up"></i></p></a>
     </div>
 {% endblock %}
