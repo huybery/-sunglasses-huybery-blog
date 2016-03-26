@@ -28,3 +28,8 @@
 :smirk_cat: (2016.3.26
  - 增加返回顶部按钮
  - 美化滚动条
+
+
+ #### 优化
+ - post图片使用七牛
+ - 使用[bootcdn](http://www.bootcdn.cn/)加速静态文件库
