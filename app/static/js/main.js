@@ -23,6 +23,25 @@ scroll_fn();
 });
 });
 
+//go_up
+$(document).ready(function(){
+        //首先将#back-to-top隐藏
+            $(".go_up").hide();
+            //当滚动条的位置处于距顶部100像素以下时，跳转链接出现，否则消失
+            $(function () {
+                $(window).scroll(function(){
+                if ($(window).scrollTop()>400){
+                    $(".go_up").fadeIn(800);}
+                else{
+                    $(".go_up").fadeOut(800);}
+                });
+//当点击跳转链接后，回到页面顶部位置
+            $(".go_up").click(function () {
+                var speed=800;//滑动的速度
+                $('body,html').animate({ scrollTop: 0 }, speed);
+                return false;});
+            });
+        });
 
 
 

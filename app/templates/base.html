@@ -1,7 +1,5 @@
 {% extends "bootstrap/base.html" %}
 
-
-
 {% block head %}
     {{ super() }}
     <link rel="shortcut icon" href="{{ url_for('static',filename = 'favicon.ico') }}" type="image/x-icon">
@@ -11,7 +9,6 @@
     <script type="text/javascript" src="http://cdn.bootcss.com/jquery.nicescroll/3.6.8/jquery.nicescroll.min.js"></script>
     <script type="text/javascript" src="http://cdn.bootcss.com/headroom/0.7.0/headroom.min.js"></script>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css') }}">
-
 {% endblock %}
 {% block title %}huybery{% endblock %}
 
@@ -89,20 +86,16 @@
     {{ super() }}
     {{ moment.include_moment() }}
     <script type="text/javascript">
-
-
-
         var myElement = document.querySelector("header");
         // 创建 Headroom 对象，将页面元素传递进去
         var headroom  = new Headroom(myElement);
         // 初始化
         headroom.init();
 
-        $(".go_up").click(function () {
-        var speed=600;//滑动的速度
-        $('body,html').animate({ scrollTop: 0 }, speed);
-        return false;
-        });
+
+
+
+
     </script>
     <script type="text/javascript" src="{{ url_for('static',filename='js/main.js') }}"></script>
 {% endblock %}
