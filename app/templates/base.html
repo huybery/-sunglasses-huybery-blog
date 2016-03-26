@@ -8,6 +8,7 @@
     <link rel="icon" href="{{ url_for('static',filename = 'favicon.ico') }}">
     <link type="text/css" href="http://cdn.bootcss.com/flat-ui/2.2.2/css/flat-ui.css" rel="stylesheet">
     <script type="text/javascript" src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="http://cdn.bootcss.com/jquery.nicescroll/3.6.8/jquery.nicescroll.min.js"></script>
     <script type="text/javascript" src="http://cdn.bootcss.com/headroom/0.7.0/headroom.min.js"></script>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css') }}">
 
@@ -18,6 +19,18 @@
 
 {#nav#}
 {% block navbar %}
+    <script>
+    $('body').niceScroll({
+    cursorcolor: "#000",//#CC0071 光标颜色
+    cursoropacitymax: 1, //改变不透明度非常光标处于活动状态（scrollabar“可见”状态），范围从1到0
+    touchbehavior: false, //使光标拖动滚动像在台式电脑触摸设备
+    cursorwidth: "5px", //像素光标的宽度
+    cursorborder: "1px solid ＃FFF", //     游标边框css定义
+    cursorborderradius: "5px",//以像素为光标边界半径
+    autohidemode: false, //是否隐藏滚动条
+    mousescrollstep:80 //设置滚动速度
+    });
+    </script>
     <div id="loading"></div>
     <header class="header" id="header">
         <div class="navbar navbar-inverse navbar-embossed" role="navigation">
@@ -76,6 +89,9 @@
     {{ super() }}
     {{ moment.include_moment() }}
     <script type="text/javascript">
+
+
+
         var myElement = document.querySelector("header");
         // 创建 Headroom 对象，将页面元素传递进去
         var headroom  = new Headroom(myElement);
