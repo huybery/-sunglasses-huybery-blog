@@ -31,6 +31,7 @@
 
 
  #### 优化
- :racehorse:（2016.3.26
+
+:racehorse:（2016.3.26
  - post图片使用七牛
  - 使用[bootcdn](http://www.bootcdn.cn/)加速静态文件库
