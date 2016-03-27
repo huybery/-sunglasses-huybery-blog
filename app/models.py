@@ -53,21 +53,14 @@ class Post(db.Model):
     body_html = db.Column(db.Text)
 
     @staticmethod
-    def on_change_body(target, value, oldvalue, initiator):
-        allowed_tags=['a', 'abbr', 'acronym', 'b',
-                      'blockquote', 'code', 'em',
-                      'i', 'li', 'ol', 'pre',
-                      'strong', 'ul', 'h1',
-                      'h2', 'h3', 'p', 'img']
-        allowed_attrs = {'img': ['src', 'alt']}
+    def on_changed_body(target, value, oldvalue, initiator):
+        allowed_tags = ['a', 'abbr', 'acronym', 'b', 'code', 'blockquote','em', 'i','strong','li','ol','pre','strong','ul','h1','h2','h3','p']
         target.body_html = bleach.linkify(bleach.clean(
             markdown(value, output_format='html'),
-            tags=allowed_tags,
-            attributes=allowed_attrs,
-            strip=True
-        ))
+            tags=allowed_tags, strip=True)
+            )
 
-db.event.listen(Post.body, 'set', Post.on_change_body)
+db.event.listen(Post.body, 'set', Post.on_changed_body)
 
 class Item(db.Model):
     __tablename__ = 'items'

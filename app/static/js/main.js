@@ -1,6 +1,11 @@
 /**
  * Created by huybery on 16-3-25.
  */
+$(document).ready(function () {
+    $("body").hide();
+    $("body").fadeIn(2000);
+})
+
 $(function() {
 function scroll_fn(){
 
@@ -42,7 +47,6 @@ $(document).ready(function(){
                 return false;});
             });
         });
-
 
 
 

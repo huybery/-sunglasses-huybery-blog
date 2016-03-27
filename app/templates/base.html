@@ -5,6 +5,7 @@
     <link rel="shortcut icon" href="{{ url_for('static',filename = 'favicon.ico') }}" type="image/x-icon">
     <link rel="icon" href="{{ url_for('static',filename = 'favicon.ico') }}">
     <link type="text/css" href="http://cdn.bootcss.com/flat-ui/2.2.2/css/flat-ui.css" rel="stylesheet">
+
     <script type="text/javascript" src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
     <script type="text/javascript" src="http://cdn.bootcss.com/jquery.nicescroll/3.6.8/jquery.nicescroll.min.js"></script>
     <script type="text/javascript" src="http://cdn.bootcss.com/headroom/0.7.0/headroom.min.js"></script>
@@ -48,7 +49,7 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                             <li><a href="/">Index</a></li>
-                            <li><a href="/">About</a></li>
+{#                            <li><a href="/">About</a></li>#}
                         {% if current_user.is_authenticated %}
                             <li><a href="{{ url_for('auth.logout') }}">Sign Out</a> </li>
                         {% else %}
@@ -84,7 +85,6 @@
     </div>
     <script type="text/javascript">
         $youziku.load(".post",  "3a40e663fea44fc1a91a5a26c4d3047d", "Heiti-TC-Light");
-        $youziku.load(".page_title",  "3a40e663fea44fc1a91a5a26c4d3047d", "Heiti-TC-Light");
         $youziku.draw();
     </script>
 {% endblock %}
@@ -103,4 +103,6 @@
         headroom.init();
     </script>
     <script type="text/javascript" src="{{ url_for('static',filename='js/main.js') }}"></script>
+    <script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
 {% endblock %}
