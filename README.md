@@ -33,6 +33,7 @@
  - 美化post显示
  - 更换了字体
  - 4个小时解决了重大bug！！有关flask-pagedown渲染问题(心酸脸
+ - 集成highlight.js
 
 
 #### 优化：
