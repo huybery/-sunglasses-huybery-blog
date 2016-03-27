@@ -18,8 +18,11 @@
 .image_header{
     background-image: url("http://7xs7qz.com1.z0.glb.clouddn.com/index_bg.jpg");
     background-size: cover;
+    -webkit-background-size: cover;
+    /*background-attachment:fixed;*/
     width: 100%;
     height: 500px;
+    margin-top: -15px;
     z-index: -1;
 }
 
@@ -29,6 +32,20 @@
 }
 .page_title h5{
     line-height: 500px;
+}
+
+.post{
+    list-style:none;
+}
+.post_title h5{
+    color:black;
+}
+.post_time{
+    font-style: italic;
+    font-size:0.8em;
+}
+.post_tag{
+    top:25px;
 }
 
 .go_up{

@@ -31,44 +31,53 @@
         {% endif %}
     </div>
 
-<ul class="posts">
+<div class="posts">
     {% for post in posts %}
-    <li class="post">
-        <div class="post-head">
-            <h4>{{ post.head }}</h4>
+    <div class="post">
+        <div class="post_title">
+            <a href="{{ url_for('.post',id=post.id) }}">
+                <h5><span class="glyphicon glyphicon-link"></span> {{ post.head }}</h5>
+            </a>
         </div>
-        <div class="post-date">
-            {{ moment(post.timestamp).format('YYYY-MM-DD HH:mm:ss') }}
-        </div>
-        <div class="post-body">
-            {% if post.body_html %}
-                {{ post.body_html | safe | truncate(200, True, end='...') }}
-            {% else %}
-                {{ post.body }}
-            {% endif %}
-        </div>
-        <a href="{{ url_for('.item',tag = post.item.tag) }}">
-            <span class="label label-success">{{ post.item.tag }}</span>
-        </a>
         <a href="{{ url_for('.post',id=post.id) }}">
-            <span class="label label-success">快点我！</span>
+            <div class="post-body">
+                {% if post.body_html %}
+                    {{ post.body_html | safe | truncate(200, True, end='...') }}
+                {% else %}
+                    {{ post.body }}
+                {% endif %}
+            </div>
         </a>
-    {% if current_user.is_authenticated %}
-        <a href="{{ url_for('.edit',id=post.id) }}">
-            <span class="label label-primary">Edit</span>
-        </a>
-    {% endif %}
-    </li>
-        <hr />
-    {% endfor %}
-</ul>
 
-<div class="row">
+        <div class="row">
+            <a class="col-lg-2 col-sm-2 col-xs-2 post_tag" href="{{ url_for('.item',tag = post.item.tag) }}">
+                <span class="label label-info">
+                {{ post.item.tag }}
+                </span>
+            </a>
+            <p class="col-lg-3 col-sm-3 col-xs-6 col-xs-offset-8 col-sm-offset-9 col-lg-offset-9 post_time">{{ moment(post.timestamp).format('YYYY-MM-DD HH:mm:ss') }} </p>
+        </div>
+
+        {% if current_user.is_authenticated %}
+            <a href="{{ url_for('.edit',id=post.id) }}">
+                <span class="label label-primary">Edit</span>
+            </a>
+        {% endif %}
+
+        <hr />
+
+    </div>
+    {% endfor %}
+</div>
+
+
     <div class="col-lg-offset-5">
     {{ macros.pagination_widget(pagination,'.index') }}
     </div>
-</div>
+
 {% endblock %}
+
+
 
 {% block scripts %}
 {{ super() }}

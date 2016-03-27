@@ -9,6 +9,7 @@
     <script type="text/javascript" src="http://cdn.bootcss.com/jquery.nicescroll/3.6.8/jquery.nicescroll.min.js"></script>
     <script type="text/javascript" src="http://cdn.bootcss.com/headroom/0.7.0/headroom.min.js"></script>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css') }}">
+    <script type="text/javascript" src="http://api.youziku.com/webfont/FastJS/yzk_71173B3BF6CF5B88"></script>
 {% endblock %}
 {% block title %}huybery{% endblock %}
 
@@ -65,8 +66,12 @@
 
 {#content#}
 {% block content %}
-    <div class="container">
-        {% block page_content %}{% endblock %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6 col-lg-offset-2">
+                {% block page_content %}{% endblock %}
+            </div>
+        </div>
         {% for message in get_flashed_messages() %}
             <div class="alert alert-warning">
                 <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -77,6 +82,9 @@
     <div class="go_up" id="go_up">
         <a href="#"><p><i class="glyphicon glyphicon-menu-up"></i></p></a>
     </div>
+    <script type="text/javascript">
+        $youziku.draw();
+    </script>
 {% endblock %}
 
 
@@ -92,10 +100,5 @@
         // 初始化
         headroom.init();
     </script>
-    <script type="text/javascript" src="http://api.youziku.com/webfont/FastJS/yzk_71173B3BF6CF5B88"></script>
-    <script type="text/javascript">
-        $youziku.draw();
-    </script>
     <script type="text/javascript" src="{{ url_for('static',filename='js/main.js') }}"></script>
-
 {% endblock %}
