@@ -68,7 +68,7 @@
 {% block content %}
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-6 col-lg-offset-2">
+            <div class="col-lg-6 col-lg-offset-3">
                 {% block page_content %}{% endblock %}
             </div>
         </div>
@@ -83,6 +83,8 @@
         <a href="#"><p><i class="glyphicon glyphicon-menu-up"></i></p></a>
     </div>
     <script type="text/javascript">
+        $youziku.load(".post",  "3a40e663fea44fc1a91a5a26c4d3047d", "Heiti-TC-Light");
+        $youziku.load(".page_title",  "3a40e663fea44fc1a91a5a26c4d3047d", "Heiti-TC-Light");
         $youziku.draw();
     </script>
 {% endblock %}
