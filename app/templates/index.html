@@ -42,7 +42,7 @@
         <a href="{{ url_for('.post',id=post.id) }}">
             <div class="post-body">
                 {% if post.body_html %}
-                    {{ post.body_html | safe | truncate(40,  killwords=False, end='...') }}
+                    {{ post.body_html | safe | truncate(200,  killwords=False, end='...') }}
 
                 {% endif %}
             </div>
