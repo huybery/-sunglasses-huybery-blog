@@ -5,7 +5,7 @@
     <link rel="shortcut icon" href="{{ url_for('static',filename = 'favicon.ico') }}" type="image/x-icon">
     <link rel="icon" href="{{ url_for('static',filename = 'favicon.ico') }}">
     <link type="text/css" href="http://cdn.bootcss.com/flat-ui/2.2.2/css/flat-ui.css" rel="stylesheet">
-
+    <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <script type="text/javascript" src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
     <script type="text/javascript" src="http://cdn.bootcss.com/jquery.nicescroll/3.6.8/jquery.nicescroll.min.js"></script>
     <script type="text/javascript" src="http://cdn.bootcss.com/headroom/0.7.0/headroom.min.js"></script>
@@ -72,6 +72,45 @@
         <div class="row">
             <div class="col-lg-6 col-lg-offset-3">
                 {% block page_content %}{% endblock %}
+
+                <ul class="list-inline text-center footer">
+                    <!-- add Weibo, Zhihu by Hux, add target = "_blank" to <a> by huybery -->
+                    <li>
+                        <a  target="_blank" href="https://www.zhihu.com/people/huybery">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+
+                     <li>
+                        <a target="_blank" href="https://github.com/huybery">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a target="_blank" href="http://weibo.com/huybery">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-qq fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+
+                </ul>
+
+                <p class="copyright text-muted text-center">
+                    Copyright © Huybery Blog 2016
+                    <br>
+                    Theme © <a href="http://huybery.me">Huybery</a> |
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="91px" height="20px" src="https://ghbtns.com/github-btn.html?user=huybery&amp;repo=huybery-blog&amp;type=star&amp;count=true">
+                    </iframe>
+                </p>
             </div>
         </div>
         {% for message in get_flashed_messages() %}
@@ -84,10 +123,7 @@
     <div class="go_up" id="go_up">
         <a href="#"><p><i class="glyphicon glyphicon-menu-up"></i></p></a>
     </div>
-    <script type="text/javascript">
-        $youziku.load(".post",  "3a40e663fea44fc1a91a5a26c4d3047d", "Heiti-TC-Light");
-        $youziku.draw();
-    </script>
+
 {% endblock %}
 
 
@@ -105,5 +141,9 @@
     </script>
     <script type="text/javascript" src="{{ url_for('static',filename='js/main.js') }}"></script>
     <script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
+    <script type="text/javascript">hljs.initHighlightingOnLoad();</script>
+    <script type="text/javascript">
+        $youziku.load(".post",  "3a40e663fea44fc1a91a5a26c4d3047d", "Heiti-TC-Light");
+        $youziku.draw();
+    </script>
 {% endblock %}
