@@ -9,10 +9,12 @@
 	left: 0px;
 	top: 0px;
     position: fixed;
+    z-index: 999;
 }
 
 .navbar-inverse{
     background-color: rgba(0,0,0,0.5);
+    z-index: 999;
 }
 
 .image_header{
