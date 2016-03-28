@@ -37,6 +37,7 @@
 
 :smile_cat:(2016.3.28
  - 增加底部footer
+ - 修改了Post和tags顶部图片
 
 
 #### 优化：
