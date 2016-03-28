@@ -35,6 +35,9 @@
  - 4个小时解决了重大bug！！有关flask-pagedown渲染问题(心酸脸
  - 集成highlight.js
 
+:smile_cat:(2016.3.28
+ - 增加底部footer
+
 
 #### 优化：
 
