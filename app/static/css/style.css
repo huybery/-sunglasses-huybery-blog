@@ -32,6 +32,9 @@
     text-align: center;
     color: #ffffff;
 }
+.page_title h1{
+    line-height: 520px;
+}
 .page_title h5{
     line-height: 520px;
 }

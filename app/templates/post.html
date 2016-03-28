@@ -1,32 +1,47 @@
 {% extends "base.html" %}
 
 {% block title %}post{% endblock %}
-
+{% block page_image %}
+    <div class="container-fluid header">
+        <div class="row">
+            <div class="image_header col-lg-12" style="height: 400px;;background-image: url('http://7xs7qz.com1.z0.glb.clouddn.com/post.png')">
+            </div>
+        </div>
+    <div>
+{% endblock %}
 {% block page_content %}
     <ul class="posts">
-
     {% for post in posts %}
-    <li class="post">
-        <div class="post-date">
-            {{  moment(post.timestamp).format('YYYY-MM-DD HH:mm:ss') }}
+    <div class="post">
+        <div class="post_title">
+            <a href="{{ url_for('.post',id=post.id) }}">
+                <h1 style="position: absolute;color: white;margin-top: -200px;"><span class="glyphicon glyphicon-link"></span> {{ post.head }}</h1>
+            </a>
         </div>
-        <div class="post-head">
-            {{ post.head }}
-        </div>
-        <div class="post-body">
+
+        <div  style="margin-top: 30px;" class="post-body">
             {% if post.body_html %}
                 {{ post.body_html | safe }}
-            {% else %}
-                {{ post.body }}
             {% endif %}
         </div>
-        <div>
-            <span class="label label-danger">{{ post.tag }}</span>
+        <div class="row">
+            <a class="col-lg-2 col-sm-2 col-xs-2 post_tag" href="{{ url_for('.item',tag = post.item.tag) }}">
+                <span class="label label-info">
+                {{ post.item.tag }}
+                </span>
+            </a>
+            <p class="col-lg-3 col-sm-3 col-xs-6 col-xs-offset-8 col-sm-offset-9 col-lg-offset-9 post_time">{{ moment(post.timestamp).format('YYYY-MM-DD HH:mm:ss') }} </p>
         </div>
-        <a href="{{ url_for('.post',id=post.id) }}">
-            <span class="label label-danger">快点我！</span>
-        </a>
-    </li>
+
+        {% if current_user.is_authenticated %}
+            <a href="{{ url_for('.edit',id=post.id) }}">
+                <span class="label label-primary">Edit</span>
+            </a>
+        {% endif %}
+
+        <hr />
+
+    </div>
     {% endfor %}
 </ul>
 {% endblock %}

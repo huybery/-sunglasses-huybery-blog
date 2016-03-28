@@ -2,10 +2,22 @@
 {% import "bootstrap/wtf.html" as wtf %}
 
 {% block title %}huybery - Login{% endblock %}
-
+{% block page_image %}
+    <div class="container-fluid header">
+        <div class="row">
+            <div class="image_header col-lg-12" style="background-image: url('http://7xs7qz.com1.z0.glb.clouddn.com/login.jpg')">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="page_title">
+                            <h1>login</h1>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    <div>
+{% endblock %}
 {% block page_content %}
 <div class="page-header">
-    <h1>Login</h1>
+
 </div>
 <div class="col-md-4">
     {{ wtf.quick_form(form) }}

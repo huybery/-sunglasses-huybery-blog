@@ -2,37 +2,57 @@
 {% import "bootstrap/wtf.html" as wtf %}
 {% import "_macros.html" as macros %}
 {% block title %}uybery{% endblock %}
-
+{% block page_image %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="image_header col-lg-12" style="height: 400px;background-image: url('http://7xs7qz.com1.z0.glb.clouddn.com/2016-03-28%2023%3A04%3A06%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png')">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="page_title">
+                            {% for post in posts %}
+                            <h1 style="line-height: 300px;">{{ post.item.tag }}</h1>
+                            {% endfor %}
+                        </div>
+                    </div>
+            </div>
+        </div>
+    <div>
+{% endblock %}
 {% block page_content %}
 <ul class="posts">
     {% for post in posts %}
-    <li class="post">
-        <div class="post-date">
-            {{ moment(post.timestamp).format('YYYY-MM-DD HH:mm:ss') }}
+    <div class="post">
+        <div class="post_title">
+            <a href="{{ url_for('.post',id=post.id) }}">
+                <h5><span class="glyphicon glyphicon-link"></span> {{ post.head }}</h5>
+            </a>
         </div>
-        <div class="post-head">
-            <h1>{{ post.head }}</h1>
-        </div>
-        <div class="post-body">
-            {% if post.body_html %}
-                {{ post.body_html | safe | truncate(200, True, end='...') }}
-            {% else %}
-                {{ post.body }}
-            {% endif %}
-        </div>
-        <a href="{{ url_for('.item',tag = post.item.tag) }}">
-            <span class="label label-success">{{ post.item.tag }}</span>
-        </a>
         <a href="{{ url_for('.post',id=post.id) }}">
-            <span class="label label-success">快点我！</span>
+            <div class="post-body">
+                {% if post.body_html %}
+                    {{ post.body_html | safe | truncate(200,  killwords=False, end='...') }}
+
+                {% endif %}
+            </div>
         </a>
-    {% if current_user.is_authenticated %}
-        <a href="{{ url_for('.edit',id=post.id) }}">
-            <span class="label label-primary">Edit</span>
-        </a>
-    {% endif %}
-    </li>
+
+        <div class="row">
+            <a class="col-lg-2 col-sm-2 col-xs-2 post_tag" href="{{ url_for('.item',tag = post.item.tag) }}">
+                <span class="label label-info">
+                {{ post.item.tag }}
+                </span>
+            </a>
+            <p class="col-lg-3 col-sm-3 col-xs-6 col-xs-offset-8 col-sm-offset-9 col-lg-offset-9 post_time">{{ moment(post.timestamp).format('YYYY-MM-DD HH:mm:ss') }} </p>
+        </div>
+
+        {% if current_user.is_authenticated %}
+            <a href="{{ url_for('.edit',id=post.id) }}">
+                <span class="label label-primary">Edit</span>
+            </a>
+        {% endif %}
+
         <hr />
+
+    </div>
     {% endfor %}
 </ul>
 
