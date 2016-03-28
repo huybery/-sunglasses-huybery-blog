@@ -42,9 +42,12 @@
  - 修改了多说css 增加圆角头像 旋转
  - 修复多说气泡bug
 
-
 #### 优化：
 
 :racehorse:（2016.3.26
  - post图片使用[七牛](http://www.qiniu.com/)
  - 使用[bootcdn](http://www.bootcdn.cn/)加速静态文件库
+
+#### 部署：
+ :speak_no_evil:（2016.3.29
+ - 准备开始部署！
