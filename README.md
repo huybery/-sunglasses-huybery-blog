@@ -57,5 +57,5 @@
  - 配置阿里云,ubuntu 14.04
  - 配置虚拟环境venv
 
- :trollface:(2016.3.29
+:trollface:(2016.3.29
  - 配置uswgi
