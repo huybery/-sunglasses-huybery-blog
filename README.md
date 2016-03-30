@@ -59,3 +59,6 @@
 
 :trollface: ( 2016.3.29
  - 配置uswgi
+
+:scream_cat:( 2016.3.30
+ - 折腾一早上vsftpd
