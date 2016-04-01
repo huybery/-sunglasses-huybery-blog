@@ -15,7 +15,7 @@
     <div class="post">
         <div class="post_title">
             <a href="{{ url_for('.post',id=post.id) }}">
-                <h1 style="position: absolute;color: white;margin-top: -200px;"><span class="glyphicon glyphicon-link"></span> {{ post.head }}</h1>
+                <h4 style="position: absolute;color: white;margin-top: -200px;"><span class="glyphicon glyphicon-link"></span> {{ post.head }}</h4>
             </a>
         </div>
 
@@ -30,7 +30,7 @@
                 {{ post.item.tag }}
                 </span>
             </a>
-            <p class="col-lg-3 col-sm-3 col-xs-6 col-xs-offset-8 col-sm-offset-9 col-lg-offset-9 post_time">{{ moment(post.timestamp).format('YYYY-MM-DD HH:mm:ss') }} </p>
+            <p class="col-lg-3 col-sm-3 col-xs-7 col-xs-offset-5 col-sm-offset-9 col-lg-offset-9 post_time">{{ moment(post.timestamp).format('YYYY-MM-DD HH:mm:ss') }} </p>
         </div>
 
         {% if current_user.is_authenticated %}
@@ -40,8 +40,10 @@
         {% endif %}
 
         <hr />
-        <div class="ds-thread" data-thread-key="{{ post.id }}" data-title="{{ post.title }}" data-url="/post/{{ post.id }}"></div>
-<!-- 多说评论框 end power by huybery-css -->
+    <div class="row">
+        <div class="ds-thread col-xs-11" data-thread-key="{{ post.id }}" data-title="{{ post.title }}" data-url="/post/{{ post.id }}"></div>
+    </div>
+        <!-- 多说评论框 end power by huybery-css -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
 var duoshuoQuery = {short_name:"huybery"};

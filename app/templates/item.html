@@ -9,7 +9,7 @@
                     <div class="col-lg-8 col-lg-offset-2">
                         <div class="page_title">
                             {% for post in posts %}
-                                <h1 style="line-height: 300px;"><span style="font-size:35px;" class="glyphicon glyphicon-tag"></span> {{ post.item.tag }}</h1>
+                                <h4 style="line-height: 300px;"><span style="font-size:35px;" class="glyphicon glyphicon-tag"></span> {{ post.item.tag }}</h4>
                             {% endfor %}
                         </div>
                     </div>
@@ -41,7 +41,7 @@
                 {{ post.item.tag }}
                 </span>
             </a>
-            <p class="col-lg-3 col-sm-3 col-xs-6 col-xs-offset-8 col-sm-offset-9 col-lg-offset-9 post_time">{{ moment(post.timestamp).format('YYYY-MM-DD HH:mm:ss') }} </p>
+            <p class="col-lg-3 col-sm-3 col-xs-7 col-xs-offset-5 col-sm-offset-9 col-lg-offset-9 post_time">{{ moment(post.timestamp).format('YYYY-MM-DD HH:mm:ss') }} </p>
         </div>
 
         {% if current_user.is_authenticated %}
