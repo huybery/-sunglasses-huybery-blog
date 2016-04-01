@@ -65,7 +65,7 @@
 
 :alien:(2016.3.31
   - 被破服务器整的心力憔悴呜呜
-  - 成功部署,感谢[@Responsible](https://github.com/responsible)
+  - 成功部署,感谢[@Responsible](https://github.com/responsible)的帮助
 
 :hear_no_evil: （2016.4.1
   - 解决移动端适应bug
