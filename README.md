@@ -69,3 +69,4 @@
 
 :hear_no_evil: （2016.4.1
   - 解决移动端适应bug
+  - 绑定域名 [huybery.me](huybery.me)
