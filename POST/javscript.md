@@ -10,7 +10,7 @@
 - 文档对象模型（DOM）
 - 浏览器对象模型（BOM）
 
- ## 文档对象模型（DOM）
+## 文档对象模型（DOM）
 
 > Document Object Model:是针对XML但经过扩展用于HTML的应用程序编程接口。
 
