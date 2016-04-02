@@ -1,3 +1,8 @@
+> 这是什么?
+  最近想恶补一下关于javascript的基础知识
+  权当一个记录笔记
+  反正也不会有人看..
+
 # 1.JavaScript 简介
 ## JavaScript简史
   Netscape：JavaScript
@@ -101,3 +106,28 @@ ECMAScript5引入`“use strict”`
 ## 保留字和关键字
 - 关键字：具有特殊用途
 - 保留字：有可能在将来被用作关键字
+
+## 变量
+ECMAScript 的变量是松散类型的，所谓的松散类型就是可以用来保存任何类型的数据。定义变量时要用`var`操作符，后跟一个变量名。支持变量初始化。
+
+    var name = "huybery";
+
+## 数据类型
+ECMAScript有5种简单数据类型
+
+- Undefined
+- Null
+- Boolean
+- Number
+- String
+
+还有1种复杂数据类型
+
+- Object(本质上由一组无序的名值对组成)
+
+### `typeof`操作符
+一种手段来检测给定变量的数据类型，可返回的值如下
+
+- `"undefined"` 这个值未定义
+- `"Boolean"` 如果这个值是布尔值
+- `"string"` 如果这个值是字符串
