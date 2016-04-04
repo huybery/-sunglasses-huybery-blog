@@ -1,6 +1,10 @@
 # huybery-blog
 >## About Blog
-
+#### 技术栈
+前端： bootstrap+flatui 
+后端 : flask
+数据库 : sqlite 使用 SQLAlchemy 管理
+服务器 ： Nignx + WSGI + Supervisor 
 #### 为什么要写这个blog?
 
 还记得踏入这一行业最初的目标就是在www上有一个属于自己的blog...
@@ -8,6 +12,8 @@
 第一版blog折腾了wordpress，接触了前端，接触了SAE，接触了以后绝对不会写的PHP（别问窝为什么..
 
 第二版使用了hexo静态blog 然后托管到了github pages，折腾了一下午终于部署完以后就再也没有更新过blog（失败2333
+
+第三版我决定自己写一个 一是练一练后端 二是折腾一下服务器
 
 >## Development Log
 
