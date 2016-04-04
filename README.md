@@ -1,10 +1,14 @@
 # huybery-blog
 >## About Blog
+
 #### 技术栈
-前端： bootstrap+flatui 
+前端： bootstrap+flatui
+
 后端 : flask
+
 数据库 : sqlite 使用 SQLAlchemy 管理
-服务器 ： Nignx + WSGI + Supervisor 
+
+服务器 ： Nignx + WSGI + Supervisor
 #### 为什么要写这个blog?
 
 还记得踏入这一行业最初的目标就是在www上有一个属于自己的blog...
