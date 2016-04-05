@@ -203,3 +203,70 @@ undefined 值是派生自`null`的值，因此规定对他们的相等性测试�
 - 递增和递减操作符
 - 一元加和减操作符
 
+## 语句
+### if 语句
+`if(condition) statement1 else statement2`
+### do-while 语句
+    
+    do{
+    	statement
+    }while(expression)
+
+### while 语句
+`while(expression) statement`
+
+### for语句
+
+`for (initialization;expression;post-loop-expression) statement`
+
+### for-in 语句
+
+`for (property in expression) statement`
+
+for-in 循环输出的属性名的顺序是不可预测的，返回的先后次序可能会因浏览器而异
+
+### label 语句
+
+`label:statement`
+
+使用label语句可以在代码还总添加标签，以便将来使用
+
+### break和continue语句
+break和continue语句于用在循环中准确地控制代码的执行，其中break语句会立即退出循环，强制执行循环后面的句子。而continue语句虽然也会立即退出循环，但退出循环后从循环的顶部继续执行。
+
+### with语句
+`with (expression) statement;`
+
+with语句的作用是将代码的作用域设置到一个特定的对象中
+例如下面语句
+
+	var qs = location.search.substring(1)
+	var hostName = location.hostname;
+	var url = location.href;
+	//上面几行代码都包含location对象，如果使用with语句，可以把上面的代码改写成如下所示：
+	with(location){
+		var qs = search.substring(1);
+		var hostName = hostname;
+		var url = href;
+	}
+
+在这个重写后的例子中，使用with语句关联了location对象，这意味着在with语句的代码块内部 每个变量首先被认为是一个局部变量 而如果在局部环境中找不到该变量的定义 就会查询location对象中是否有同名的属性。
+
+> 由于大量使用with语句会导致性能下降 同时也会给调试代码造成困难 因此在开发大型应用时，不建议使用with语句
+
+### switch 语句
+和c基本一致 略。
+
+## 函数
+
+	function functionName(arg0,arg1,...,argN){
+		statements
+		return sth
+	}
+
+
+任何函数在任何时候都可以通过`return`语句后要返回的值来实现返回值。
+
+
+
+
