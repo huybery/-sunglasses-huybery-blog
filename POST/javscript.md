@@ -403,3 +403,12 @@ javascrip 中最常用的垃圾收集机制是标记清除。
 	person.age = 17;
 
 
+一般来说 访问对象属性时都是点表示法，不过也可以使用方括号表示法来访问对象的属性
+
+从功能上看 这两种访问对象属性的方法没有任何区别，但方括号语法的主要优点时可以通过变量来访问属性
+
+	alert(person["name"]);
+	alert(person.name);
+	var propertyName = "name";
+	alert(person[propertyName]);
+
