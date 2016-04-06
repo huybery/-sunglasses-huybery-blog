@@ -412,3 +412,61 @@ javascrip 中最常用的垃圾收集机制是标记清除。
 	var propertyName = "name";
 	alert(person[propertyName]);
 
+## Array 类型
+
+与其他语言不同 js数组的每一项可以保存任何类型的数据。
+
+创建数组的基本方式有两种：
+
+- 第一种是使用Array构造函数 
+
+	var colors = new Array();
+	var colors = new Array(20);
+	var colors = new Array("red","blue","green");
+	//也可以省略new操作符
+	var colors = Array();
+- 第二种方式时使用数组字面表示法
+
+	var colors = ["red","blue","green"];
+	var values = [1,2,3];
+
+方括号中的索引表示要访问的值`colors[2]='black'`
+
+数组的项数保存在其length属性中，这个属性会返回0或者更大的值
+
+length属性很有特点，它不是只读的，因此通过设置这个属性，可以从数组的末尾移除项或向数组中添加新项。
+	
+	var colors = ["red","blue","green"];
+	colors.length = 2;
+	alert[colors[2]];  //undefined
+
+利用这个属性可以方便地在数组末尾添加新项
+
+	var colors = ["red","blue","green"];
+	colors[colors.length] =  "black";
+
+> 数组最多可以包含 4294967295 个项这几乎已经能够满足任何编程需求了，如果想添加的项数超过上限值，就会发生异常。而创建一个初始大小与这个上限值接近的数组，则可能会导致运行时间超长的脚本错误
+
+### 检测数组
+
+	if (Array.isArray(value)){
+		//对数组执行某些操作
+	}
+	
+### 转换方法
+
+调用数组的`toString()`方法会返回由数组每个值的字符串形式拼接而成的一个以逗号分隔的字符串。
+
+而调用`ValueOf()`返回的还是数组
+
+`join()`方法接受一个参数，即用作分隔符的字符串，然后返回包含所有数组项的字符串
+
+	var colors = ["red","blue","green"];
+	alert(colors.join('||'))
+
+### 栈方法
+`push()`方法可以接收任意数量的参数，把它们逐个添加到数组末尾，并返回修改后数组的长度
+`pop()`方法则从数组末尾移除最后一项，减少数组的length值，然后返回移除的项。
+
+
+	- 
