@@ -566,5 +566,30 @@ ECMAScript添加了`Date.nao()`方法，返回表示调用这个方法时的日�
 
 	var start = Date.now();
 
+## RegExp类型
+
+js通过 `RegExp` 类型来支持正则表达式
+
+	var expression = / pattern / flags ;
+
+其中的模式部分可以时任何简单或复杂的正则表达式 可以包含字符类 限定符 分组 向前查找以及反向引用 ，每个正则表达式都可带有一或多个标志，用以标明正则表达式的行为。正则表达式的匹配模式支持下列3个标志：
+
+- g:表示全局模式，即模式被应用于所有字符串，而非在发现第一个匹配项时立即停止
+- i:表示不区分大小写模式，即在确定匹配项时忽略模式与字符串的大小写
+- m：表示多行模式，即在到达一行文本末尾时还会继续查找下一行是否存在与模式匹配的项
+
+### RegExp 实例方法
+
+RegExp对象的主要方法时`exec()`,该方法是专门为捕获组而设计的。
+
+`exec()`接受一个参数，即要应用模式的字符串，然后返回包含第一个匹配项信息的数组;或者在没有匹配项的情况下返回Null
+
+	var text = "mom and dad and baby";
+	var pattern = /mom( and dad (and baby)?)?/gi;
+
+	var matches = pattern.exec(text);
+
+## Function 类型
+
 
 
