@@ -667,3 +667,51 @@ ECMAScript 5 也规范化了另一个函数对象的属性：`caller`，这个�
 
 它们真正强大的地方是能够扩充函数赖以运行的作用域
 
+	function sum(num1, num2){
+		return num1+num2;
+	}
+
+	function callsum1(num1, num2){
+		return sum.apply(this, arguments);
+	}
+
+	function callsum2(num1, num2){
+		retrun sum.apply(this, [num1, num2]]);
+	}
+
+	function callsum3(num1, num2){
+		return sum.call(this, num1, num2);
+	}
+
+	alert(callsum1(10, 10));
+	alert(callsum2(10, 10));
+	alert(callsum3(10, 10));
+
+	window.color = 'red';
+	var o = {
+		color : "blue"
+	};
+
+	function sayColor(){
+		alert(this.color);
+	}
+
+	sayColor();
+
+	sayColor.call(this);
+	sayColor.call(window);
+	sayColor.call(o);
+
+	//bind()举例
+
+	window.color = "red";
+	var o = {
+		color : "blue"
+	};
+
+	function sayColor(){
+		alert(this.color)
+	}
+
+	var objectSayColor = sayColor.bind(o);
+	objectSayColor();  //blue
