@@ -715,3 +715,33 @@ ECMAScript 5 也规范化了另一个函数对象的属性：`caller`，这个�
 
 	var objectSayColor = sayColor.bind(o);
 	objectSayColor();  //blue
+
+## 基本包装类型
+
+js提供了3个特殊的引用类型
+
+- `Boolean`
+- `Number`
+- `String`
+
+引用类型与基本包装类型的主要区别就是对象的生存期。
+
+使用new操作符创建的引用类型的实例，在执行流离开当前作用域之前都一直保存在内存中。
+
+而自动创建的基本包装类型的对象，则只存在于一行代码的执行瞬间，然后立即被销毁。这意味着我们不能在运行时为基本类型值添加属性和方法。
+
+### Boolean 类型
+
+建议永远不要使用 Boolean 对象
+
+### Number 类型
+
+- `toFixed()` 方法会按照指定的小数位返回数值的字符串表示（0-20位）
+- `toExponential()` 方法返回以指数表示法
+- `toPrecision()` 向上取整
+
+### String 类型
+
+
+
+
