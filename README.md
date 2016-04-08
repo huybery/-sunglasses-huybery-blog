@@ -1,4 +1,6 @@
 # huybery-blog
+
+演示地址： [120.27.54.84](http://120.27.54.84)
 >## About Blog
 
 #### 技术栈
@@ -89,4 +91,3 @@
 
 :hear_no_evil: （2016.4.1
   - 解决移动端适应bug
-  - 绑定域名 [huybery.me](huybery.me)
