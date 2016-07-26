@@ -11,6 +11,17 @@
 数据库 : sqlite 使用 SQLAlchemy 管理
 
 服务器 ： Nignx + WSGI + Supervisor
+
+使用方式
+```
+$ rm -rf migrations
+$ python manage.py db init
+$ python manage.py db migrate
+$ python manage.py db upgrade
+$ python manage.py runserver
+```
+感谢 [@bllli](https://github.com/bllli)提出的Issue
+
 #### 为什么要写这个blog?
 
 还记得踏入这一行业最初的目标就是在www上有一个属于自己的blog...
@@ -93,3 +104,5 @@
   - 解决移动端适应bug
 
 完成项目。
+
+
