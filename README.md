@@ -1,7 +1,4 @@
 # huybery-blog
 
-项目重构中。
-
-[ ] 前端使用 vue 构建 spa 页面  
-[ ] 后端使用 flask-restful 构建 rest 服务   
-[ ] 数据库使用 mysql
+项目重构中。 
+预计完成时间：您等着吧~
