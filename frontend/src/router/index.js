@@ -9,6 +9,14 @@ const routerOptions = [{
   component: 'Home'
 },
 {
+  path: '/post',
+  component: 'Post'
+},
+{
+  path: '/categories',
+  component: 'Categories'
+}
+{
   path: '/about',
   component: 'About'
 }]
