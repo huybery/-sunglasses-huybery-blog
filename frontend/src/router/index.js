@@ -15,17 +15,21 @@ const routerOptions = [{
 {
   path: '/categories',
   component: 'Categories'
-}
+},
 {
   path: '/about',
   component: 'About'
+},
+{
+  path: '*',
+  component: 'NotFound'
 }]
 
 const routes = routerOptions.map(route => {
   return {
     ...route,
-    component: () =>
-      import(`@/components/${route.component}`)
+    component: () => (
+      import(`@/components/${route.component}`))
   }
 })
 
