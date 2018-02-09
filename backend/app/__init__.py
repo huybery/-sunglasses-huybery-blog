@@ -11,13 +11,14 @@ blog = Flask(__name__,
 			static_folder = "../../dist/static",
 			template_folder= "../../dist")
 
-
 # 载入配置
 blog.config.from_object('config')
 blog.config.from_pyfile('config.py')
 
 # 允许跨域
 cors = CORS(blog, resource={"/api/*": {"origins": "*"}})
+
+# 数据库初始化
 db = MongoEngine()
 db.init_app(blog)
 
