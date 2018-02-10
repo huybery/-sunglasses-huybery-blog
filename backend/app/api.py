@@ -6,8 +6,10 @@ api 接口
 from flask import jsonify
 from flask import request
 from flask import abort
+from flask import g
 
 from app import blog
+from app import auth
 from app.models import User
 
 @blog.route("/api/test")
@@ -18,7 +20,10 @@ def test_api():
 	return jsonify(response)
 
 @blog.route("/api/register", methods=["POST"])
-def new_user():
+def register_user():
+	"""
+	注册用户
+	"""
 	data = request.get_json()
 	username = data.get('username')
 	password = data.get('password')
@@ -36,3 +41,35 @@ def new_user():
 	user.hash_password(password)
 	user.save()
 	return jsonify({'username': user.username})
+
+@auth.verify_password
+def verify_password(username_or_token, password):
+	if request.path == '/api/token':
+		# 首次登陆使用用户名密码验证，用于获取 token
+		username = username_or_token
+		user_list = User.objects(username=username_or_token)
+		if len(user_list) == 0:
+			return False
+		else:
+			user = user_list[0]
+			if not user.verify_password(password):
+				return False
+	else:
+		# 其他路由使用 token 验证
+		token = username_or_token
+		user = User.verify_auth_token(token)
+		if not user:
+			return False
+	g.user = user
+	return True
+
+@blog.route("/api/resource")
+@auth.login_required
+def get_resouce():
+	return jsonify({'data': 'Hello, %s' % g.user.username})
+
+@blog.route("/api/token")
+@auth.login_required
+def get_auth_token():
+	token = g.user.generate_auth_token()
+	return jsonify({'token': token.decode('ascii')})

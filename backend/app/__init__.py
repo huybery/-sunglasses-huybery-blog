@@ -3,6 +3,7 @@ from flask import Flask
 from flask import render_template
 from flask_cors import CORS
 from flask_mongoengine import MongoEngine
+from flask_httpauth import HTTPBasicAuth
 
 
 # Flask 实例
@@ -10,6 +11,9 @@ blog = Flask(__name__,
             instance_relative_config=True,
 			static_folder = "../../dist/static",
 			template_folder= "../../dist")
+
+# auth
+auth = HTTPBasicAuth()
 
 # 载入配置
 blog.config.from_object('config')
