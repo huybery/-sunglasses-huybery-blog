@@ -23,6 +23,7 @@ module.exports = {
   rules: {
     // allow async-await
     'generator-star-spacing': 'off',
+    "vue/no-parsing-error": [2, { "x-invalid-end-tag": false }],
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
   }

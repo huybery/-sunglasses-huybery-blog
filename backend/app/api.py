@@ -7,6 +7,7 @@ from flask import jsonify
 from flask import request
 from flask import abort
 from flask import g
+import random
 
 from app import blog
 from app import auth
@@ -15,7 +16,7 @@ from app.models import User
 @blog.route("/api/test")
 def test_api():
 	response = {
-		'testNumber': 666
+		'testNumber': random.randint(0, 100)
 	}
 	return jsonify(response)
 

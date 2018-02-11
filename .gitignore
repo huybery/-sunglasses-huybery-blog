@@ -4,6 +4,9 @@ __pycache__/
 *$py.class
 backend/venv
 
+# flask instance config
+instance/
+
 # C extensions
 *.so
 
