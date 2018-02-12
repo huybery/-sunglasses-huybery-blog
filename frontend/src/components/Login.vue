@@ -42,7 +42,7 @@ export default {
         ],
         password: [
           { required: true, message: '请填写密码', trigger: 'blur' },
-          { type: 'string', min: 6, message: '密码长度不能小于6位', trigger: 'blur' }
+          { type: 'string', min: 4, message: '密码长度不能小于4位', trigger: 'blur' }
         ]
       },
       bg: {

@@ -41,7 +41,7 @@
               <p class="time">2011年10月5日</p>
               <p class="content">史蒂夫·乔布斯去世</p>
             </TimelineItem>
-            <Timeline>
+          <Timeline>
         <TimelineItem color="green">发布1.0版本</TimelineItem>
         <TimelineItem color="green">发布2.0版本</TimelineItem>
         <TimelineItem color="red">严重故障</TimelineItem>
