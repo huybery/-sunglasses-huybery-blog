@@ -2,7 +2,7 @@
 <div id="login" >
     <Row type="flex" justify="center">
         <!-- <img src="../assets/login.jpg" alt="" :style="bg"> -->
-        <Col span="10">
+        <Col span="8">
             <Card class="form">
                 <div slot="title">
                     「 登录 」
