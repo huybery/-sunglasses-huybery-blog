@@ -25,6 +25,13 @@ const routerOptions = [{
   component: 'Login'
 },
 {
+  path: '/admin',
+  component: 'Admin',
+  meta: {
+    requireAuth: true
+  }
+},
+{
   path: '*',
   component: 'NotFound'
 }]

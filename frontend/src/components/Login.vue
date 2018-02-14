@@ -60,11 +60,14 @@ export default {
             username: form.username,
             password: form.password
           }
+          console.log(form.username, form.password)
           this.$axios.get('/api/login').then(response => {
             this.$Message.success('提交成功')
             let data = response.data
-            this.$store.commit('set_token', data)
-            this.$router.push('/')
+            let token = data.token
+            console.log(token)
+            this.$store.commit('set_token', token)
+            this.$router.push('/admin')
           }).catch(error => {
             this.$Message.error(error.status)
           })

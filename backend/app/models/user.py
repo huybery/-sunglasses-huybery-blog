@@ -36,7 +36,6 @@ class User(db.Document):
         生成 token
         """
         serializer = JWS(blog.config['SECRET_KEY'], expires_in=expiration)
-        print(self.id)
         return serializer.dumps({'id': str(self.id)})
 
     @staticmethod

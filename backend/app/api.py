@@ -45,7 +45,7 @@ def register_user():
 
 @auth.verify_password
 def verify_password(username_or_token, password):
-	if request.path == '/api/token':
+	if request.path == '/api/login':
 		# 首次登陆使用用户名密码验证，用于获取 token
 		username = username_or_token
 		user_list = User.objects(username=username_or_token)
@@ -64,7 +64,7 @@ def verify_password(username_or_token, password):
 	g.user = user
 	return True
 
-@blog.route("/api/token")
+@blog.route("/api/login")
 @auth.login_required
 def get_auth_token():
 	"""
@@ -73,8 +73,8 @@ def get_auth_token():
 	token = g.user.generate_auth_token()
 	return jsonify({'token': token.decode('ascii')})
 
-@blog.route("/api/resource")
+@blog.route("/api/admin")
 @auth.login_required
 def get_resouce():
-	return jsonify({'data': 'Hello, %s' % g.user.username})
+	return jsonify('Hello, %s' % g.user.username)
 
