@@ -1,5 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import store from '../store'
+import iView from 'iview'
+import axios from '../http'
+import {LOGIN} from '../store/mutation-types'
 // import HelloWorld from '@/components/HelloWorld'
 
 Vue.use(Router)
@@ -54,7 +58,36 @@ const routes = routerOptions.map(route => {
 //   ]
 // })
 
-export default new Router({
+const router = new Router({
   routes,
   mode: 'history'
 })
+
+// 路由钩子方法
+router.beforeEach((to, from, next) => {
+  console.log('now token: ' + localStorage.token)
+  if (to.meta.requireAuth) {
+    if (localStorage.token) {
+      store.commit(LOGIN, localStorage.token)
+      let token = store.state.token
+      axios.defaults.auth = {
+        username: token,
+        password: 'unused'
+      }
+      next()
+    } else {
+      next({
+        path: '/login'
+      })
+    }
+  } else {
+    iView.LoadingBar.start()
+    next()
+  }
+})
+
+router.afterEach((to, from, next) => {
+  iView.LoadingBar.finish()
+})
+
+export default router

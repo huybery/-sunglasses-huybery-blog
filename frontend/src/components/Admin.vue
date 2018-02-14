@@ -10,6 +10,9 @@
 </template>
 
 <script>
+
+import {LOGOUT} from '../store/mutation-types'
+
 export default {
   data () {
     return {
@@ -18,12 +21,12 @@ export default {
   },
   methods: {
     logout () {
-      this.$store.commit('del_token')
+      this.$store.commit(LOGOUT)
       this.$router.push('login')
+      this.$Message.success('退出登录')
     }
   },
   created () {
-    console.log(this.$axios.defaults.auth)
     this.$axios.get('/api/admin').then(response => {
       this.msg = response.data
     }).catch(error => {

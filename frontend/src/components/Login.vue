@@ -28,6 +28,9 @@
 </div>
 </template>
 <script>
+
+import * as types from '../store/mutation-types'
+
 export default {
   name: 'login',
   data () {
@@ -60,16 +63,16 @@ export default {
             username: form.username,
             password: form.password
           }
-          console.log(form.username, form.password)
           this.$axios.get('/api/login').then(response => {
             this.$Message.success('登录成功')
             let data = response.data
             let token = data.token
-            console.log(token)
-            this.$store.commit('set_token', token)
+            this.$store.commit(types.LOGIN, token)
             this.$router.push('admin')
           }).catch(error => {
-            this.$Message.error(error.status)
+            if (error === 'Unauthorized Access') {
+              this.$Message.error('账户名/密码有误!')
+            }
           })
         } else {
           this.$Message.error('表单验证失败!')

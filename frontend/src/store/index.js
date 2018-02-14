@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import * as types from './mutation-types'
 
 Vue.use(Vuex)
 
@@ -8,12 +9,12 @@ export default new Vuex.Store({
     token: ''
   },
   mutations: {
-    set_token (state, token) {
+    [types.LOGIN] (state, token) {
       state.token = token
       localStorage.token = token
     },
-    del_token (state) {
-      state.token = ''
+    [types.LOGOUT] (state) {
+      state.token = null
       localStorage.removeItem('token')
     }
   },
