@@ -5,7 +5,7 @@
         <div>
             <p>{{ msg }}</p>
         </div>
-        <button @click="logout" type="primary"> 注销 </button>
+        <Button @click="logout" type="primary"> 注销 </Button>
     </div>
 </template>
 
@@ -19,11 +19,11 @@ export default {
   methods: {
     logout () {
       this.$store.commit('del_token')
-      this.$router.push('/login')
+      this.$router.push('login')
     }
   },
   created () {
-    // this.$axios.defaults.auth = this.$store.commit('get_token')
+    console.log(this.$axios.defaults.auth)
     this.$axios.get('/api/admin').then(response => {
       this.msg = response.data
     }).catch(error => {
