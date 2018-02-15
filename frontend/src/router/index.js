@@ -63,9 +63,15 @@ const router = new Router({
   mode: 'history'
 })
 
+// 刷新页面时重新赋值 token
+if (localStorage.getItem('token')) {
+  store.commit(LOGIN, localStorage.token)
+  // console.log('token commit from localStorage')
+}
+
 // 路由钩子方法
 router.beforeEach((to, from, next) => {
-  console.log('now token: ' + localStorage.token)
+  // console.log('now token: ' + localStorage.token)
   if (to.meta.requireAuth) {
     if (localStorage.token) {
       store.commit(LOGIN, localStorage.token)
