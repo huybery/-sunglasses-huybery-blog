@@ -37,6 +37,10 @@ axios.interceptors.response.use(
           router.replace({
             path: '/login'
           })
+          break
+        case 400:
+          err.response.data = 'User Has Exist'
+          break
       }
     }
     return Promise.reject(err.response.data)

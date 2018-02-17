@@ -29,6 +29,10 @@ const routerOptions = [{
   component: 'Login'
 },
 {
+  path: '/register',
+  component: 'Register'
+},
+{
   path: '/admin',
   component: 'Admin',
   meta: {

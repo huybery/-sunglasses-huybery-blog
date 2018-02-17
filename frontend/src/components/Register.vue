@@ -5,7 +5,7 @@
         <Col span="8">
             <Card class="form">
                 <div slot="title">
-                    「 登录 」
+                    「 注册 」
                 </div>
                 <Form ref="formInline" :model="formInline" :rules="ruleInline" >
                     <FormItem prop="username">
@@ -19,7 +19,7 @@
                         </Input>
                     </FormItem>
                     <FormItem>
-                        <Button type="info" @click="handleSubmit('formInline', formInline)" long>登录</Button>
+                        <Button type="ghost" @click="handleSubmit('formInline', formInline)" long>注册</Button>
                     </FormItem>
                 </Form>
             </Card>
@@ -29,7 +29,7 @@
 </template>
 <script>
 
-import * as types from '../store/mutation-types'
+// import * as types from '../store/mutation-types'
 
 export default {
   name: 'login',
@@ -59,19 +59,20 @@ export default {
     handleSubmit (name, form) {
       this.$refs[name].validate((valid) => {
         if (valid) {
-          this.$axios.defaults.auth = {
+          let user = {
             username: form.username,
             password: form.password
           }
-          this.$axios.get('/api/login').then(response => {
-            this.$Message.success('登录成功')
+          this.$axios.post('/api/register', user).then(response => {
+            this.$Message.success('注册成功')
             let data = response.data
-            let token = data.token
-            this.$store.commit(types.LOGIN, token)
-            this.$router.push('admin')
+            this.$Message.success(data.username + '注册成功，请登录')
+            this.$router.push('login')
           }).catch(error => {
-            if (error === 'Unauthorized Access') {
-              this.$Message.error('账户名/密码有误!')
+            console.log(error)
+            if (error === 'User Has Exist') {
+              this.$Message.error('账号已存在!')
+              this.$refs[name].resetFields()
             }
           })
         } else {
