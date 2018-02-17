@@ -1,7 +1,6 @@
 <template>
 <div id="login" >
     <Row type="flex" justify="center">
-        <!-- <img src="../assets/login.jpg" alt="" :style="bg"> -->
         <Col span="8">
             <Card class="form">
                 <div slot="title">
@@ -29,11 +28,20 @@
 </template>
 <script>
 
-// import * as types from '../store/mutation-types'
-
 export default {
-  name: 'login',
+  name: 'register',
   data () {
+    const validateUser = (rule, value, callback) => {
+      let username = value
+      if (username === '') { callback(new Error('请填写用户名')) }
+      this.$axios.get('/api/user/' + username).then(response => {
+        if (response.data[username]) {
+          callback(new Error('用户已经存在'))
+        } else {
+          callback()
+        }
+      })
+    }
     return {
       formInline: {
         username: '',
@@ -41,17 +49,12 @@ export default {
       },
       ruleInline: {
         username: [
-          { required: true, message: '请填写用户名', trigger: 'blur' }
+          { validator: validateUser, required: true, trigger: 'blur' }
         ],
         password: [
           { required: true, message: '请填写密码', trigger: 'blur' },
           { type: 'string', min: 4, message: '密码长度不能小于4位', trigger: 'blur' }
         ]
-      },
-      bg: {
-        width: `${window.innerWidth}px`,
-        height: `${window.innerHeight}px`,
-        position: 'absolute'
       }
     }
   },
@@ -84,16 +87,10 @@ export default {
 }
 </script>
 
-<style>
-.bg {
-    position: absolute;
-}
-.form {
+<style lang="less" scoped>
+    .form {
     text-align: center;
     margin-top: 150px;
     min-width: 300px;
-    /* p {
-        font-size: 30px;
-    } */
 }
 </style>
