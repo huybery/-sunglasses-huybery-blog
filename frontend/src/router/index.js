@@ -3,55 +3,14 @@ import Router from 'vue-router'
 import store from '../store'
 import iView from 'iview'
 import axios from '../http'
+
+import {routes} from './router'
 import {LOGIN} from '../store/mutation-types'
 // import HelloWorld from '@/components/HelloWorld'
 
 Vue.use(Router)
 
-const routerOptions = [{
-  path: '/',
-  component: 'Home'
-},
-{
-  path: '/post',
-  component: 'Post'
-},
-{
-  path: '/categories',
-  component: 'Categories'
-},
-{
-  path: '/about',
-  component: 'About'
-},
-{
-  path: '/login',
-  component: 'Login'
-},
-{
-  path: '/register',
-  component: 'Register'
-},
-{
-  path: '/admin',
-  component: 'Admin',
-  meta: {
-    requireAuth: true
-  }
-},
-{
-  path: '*',
-  component: 'NotFound'
-}]
-
-const routes = routerOptions.map(route => {
-  return {
-    ...route,
-    component: () => (
-      import(`@/components/${route.component}`))
-  }
-})
-
+// console.log(routes)
 // export default new Router({
 //   routes: [
 //     {
@@ -70,7 +29,6 @@ const router = new Router({
 // 刷新页面时重新赋值 token
 if (localStorage.getItem('token')) {
   store.commit(LOGIN, localStorage.token)
-  // console.log('token commit from localStorage')
 }
 
 // 路由钩子方法

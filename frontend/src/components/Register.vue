@@ -1,11 +1,12 @@
 <template>
 <div id="login" >
     <Row type="flex" justify="center">
-        <Col span="8">
+        <Col :sm="16" :md="12" :lg="8" :xs="22">
             <Card class="form">
-                <div slot="title">
+                <p slot="title">
+                    <Icon type="person-add"></Icon>
                     「 注册 」
-                </div>
+                </p>
                 <Form ref="formInline" :model="formInline" :rules="ruleInline" >
                     <FormItem prop="username">
                         <Input type="text" v-model="formInline.username" placeholder="用户名" size="large" @on-enter="handleSubmit('formInline', formInline)">
@@ -40,6 +41,9 @@ export default {
         } else {
           callback()
         }
+      }).catch(error => {
+        this.$Message.error(error)
+        this.$refs[name].resetFields()
       })
     }
     return {

@@ -1,12 +1,12 @@
 <template>
 <div id="login" >
     <Row type="flex" justify="center">
-        <!-- <img src="../assets/login.jpg" alt="" :style="bg"> -->
-        <Col span="8">
+        <Col :sm="16" :md="12" :lg="8" :xs="22">
             <Card class="form">
-                <div slot="title">
-                    「 登录 」
-                </div>
+                <p slot="title">
+                  <Icon slot="prepend" type="log-in"></Icon>
+                  「 登录 」
+                </p>
                 <Form ref="formInline" :model="formInline" :rules="ruleInline" >
                     <FormItem prop="username">
                         <Input type="text" v-model="formInline.username" placeholder="用户名" size="large" @on-enter="handleSubmit('formInline', formInline)">
@@ -63,13 +63,18 @@ export default {
             username: form.username,
             password: form.password
           }
+          const msg = this.$Message.loading({
+            content: '登录中...'
+          })
           this.$axios.get('/api/login').then(response => {
+            msg()
             this.$Message.success('登录成功')
             let data = response.data
             let token = data.token
             this.$store.commit(types.LOGIN, token)
             this.$router.push('admin')
           }).catch(error => {
+            msg()
             if (error === 'Unauthorized Access') {
               this.$Message.error('账户名/密码有误!')
             }
@@ -83,16 +88,13 @@ export default {
 }
 </script>
 
-<style>
+<style lang="less" scoped>
 .bg {
     position: absolute;
 }
 .form {
     text-align: center;
     margin-top: 150px;
-    min-width: 300px;
-    /* p {
-        font-size: 30px;
-    } */
+    // min-width: 300px;
 }
 </style>

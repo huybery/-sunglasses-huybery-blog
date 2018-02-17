@@ -57,6 +57,12 @@
 import axios from 'axios'
 
 export default {
+  mounted () {
+    this.$Spin.show()
+    setTimeout(() => {
+      this.$Spin.hide()
+    }, 2000)
+  },
   data () {
     return {
       testNumber: 0
