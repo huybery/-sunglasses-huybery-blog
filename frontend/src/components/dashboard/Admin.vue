@@ -3,7 +3,7 @@
 <template>
   <div>
     <!-- Header -->
-    <Menu ref="headMenu" mode="horizontal" active-name="statis" @on-select="selectEvent">
+    <Menu ref="headMenu" mode="horizontal" :active-name="currentPage" @on-select="selectEvent">
       <!-- 统计分析 -->
       <MenuItem name="statis">
           <Icon type="stats-bars"></Icon>
@@ -64,9 +64,10 @@ import {LOGOUT} from '@/store/mutation-types'
 export default {
   name: 'headMenu',
   data () {
+    let currentPage = this.$router.currentRoute.path.split('/').pop()
     return {
       username: '',
-      currentPage: ''
+      currentPage: currentPage
     }
   },
   methods: {
