@@ -38,20 +38,23 @@ const appRoutes = appRouterOptions.map(route => {
 
 // dashBoard 子路由相关
 const dashboardChild = [{
-  path: '/post',
-  component: 'Post'
+  path: '/admin/artical',
+  component: 'Artical'
 },
 {
-  path: '/user',
+  path: '/admin/user',
   component: 'User'
 },
 {
-  path: '/statis',
+  path: '/admin/statis',
   component: 'Statis'
 }]
 
 const dashboardChildRoutes = dashboardChild.map(route => {
   return {
+    meta: {
+      requireAuth: true
+    },
     ...route,
     component: () => (
         import(`@/components/dashboard/${route.component}`)

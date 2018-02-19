@@ -72,7 +72,7 @@ export default {
             let data = response.data
             let token = data.token
             this.$store.commit(types.LOGIN, token)
-            this.$router.push('admin')
+            this.$router.push('/admin/statis')
           }).catch(error => {
             msg()
             if (error === 'Unauthorized Access') {

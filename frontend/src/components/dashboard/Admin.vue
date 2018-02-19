@@ -3,9 +3,14 @@
 <template>
   <div>
     <!-- Header -->
-    <Menu ref="menu" mode="horizontal" active-name="currentPage" @on-select="selectEvent">
+    <Menu ref="headMenu" mode="horizontal" active-name="statis" @on-select="selectEvent">
+      <!-- 统计分析 -->
+      <MenuItem name="statis">
+          <Icon type="stats-bars"></Icon>
+          统计分析
+      </MenuItem>
       <!-- 文章管理 -->
-      <MenuItem name="post">
+      <MenuItem name="artical">
           <Icon type="ios-paper"></Icon>
           文章管理
       </MenuItem>
@@ -14,43 +19,50 @@
           <Icon type="ios-people"></Icon>
           用户管理
       </MenuItem>
-      <!-- 统计分析 -->
-      <Submenu name="statis">
+      <!-- <Submenu name="statis">
           <template slot="title">
               <Icon type="stats-bars"></Icon>
               统计分析
           </template>
-          <MenuGroup title="使用">
-              <MenuItem name="3-1">新增和启动</MenuItem>
-              <MenuItem name="3-2">活跃分析</MenuItem>
-              <MenuItem name="3-3">时段分析</MenuItem>
+          <MenuGroup title="流量">
+              <MenuItem name="statis">网站流量</MenuItem>
+              <MenuItem name="activate">活跃分析</MenuItem>
+              <MenuItem name="time">时段分析</MenuItem>
           </MenuGroup>
-          <MenuGroup title="留存">
-              <MenuItem name="3-4">用户留存</MenuItem>
-              <MenuItem name="3-5">流失用户</MenuItem>
+          <MenuGroup title="其他">
+              <MenuItem name="3-4">说不定有用呢</MenuItem>
+              <MenuItem name="3-5">说不定有用呢</MenuItem>
           </MenuGroup>
-      </Submenu>
+      </Submenu> -->
       <!-- 用户注销 -->
       <Submenu name="user" class="admin-nav">
         <template slot="title">
             <Icon type="happy-outline"></Icon>
             {{username}}
         </template>
+        <MenuItem name="home">
+          <Icon type="home"></Icon>
+          返回主页
+        </MenuItem>
         <MenuItem name="logout">
           <Icon type="log-out"></Icon>
           退出登录
         </MenuItem>
       </Submenu>
     </Menu>
+    <transition name="fade" mode="out-in">
+      <router-view>
 
+      </router-view>
+    </transition>
   </div>
 </template>
 
 <script>
-
 import {LOGOUT} from '@/store/mutation-types'
 
 export default {
+  name: 'headMenu',
   data () {
     return {
       username: '',
@@ -60,16 +72,16 @@ export default {
   methods: {
     logout () {
       this.$store.commit(LOGOUT)
-      this.$router.push('login')
+      this.$router.push('/login')
       this.$Message.success('退出登录')
     },
-    selectEvent (name) {
-      switch (name) {
-        case 'logout':
-          this.logout()
-          break
-        case 'post':
-          console.log(this.currentPage)
+    selectEvent (active) {
+      if (active === 'logout') {
+        this.logout()
+      } else if (active === 'home') {
+        this.$router.push('/')
+      } else {
+        this.$router.push(active)
       }
     }
   },
@@ -78,14 +90,6 @@ export default {
       this.username = response.data.username
     }).catch(error => {
       this.$Message.error(error)
-    })
-    console.log('router detect:', this.$route)
-    let path = this.$route.fullPath.match(/^\/(.*)\//)
-    this.currentPage = this.$route.name
-    this.openedSubmenuArr = [].concat(path)
-    this.$nextTick(() => {
-      this.$refs.menu.updateOpened()
-      this.$refs.menu.updateActiveName()
     })
   }
 }

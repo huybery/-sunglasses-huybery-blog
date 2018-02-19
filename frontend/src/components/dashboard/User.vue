@@ -1,6 +1,6 @@
 
 <template>
   <div>
-      <p>statis user</p>
+      <p>admin user</p>
   </div>
 </template>

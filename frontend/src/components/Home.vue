@@ -61,7 +61,7 @@ export default {
     this.$Spin.show()
     setTimeout(() => {
       this.$Spin.hide()
-    }, 2000)
+    }, 1500)
   },
   data () {
     return {
