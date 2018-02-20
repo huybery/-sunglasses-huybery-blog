@@ -6,21 +6,21 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    token: ''
+    token: '',
+    loginUser: ''
   },
   mutations: {
-    [types.LOGIN] (state, token) {
-      state.token = token
-      localStorage.token = token
+    [types.LOGIN] (state, payload) {
+      state.token = payload.token
+      state.loginUser = payload.loginUser
+      localStorage.token = payload.token
+      localStorage.loginUser = payload.loginUser
     },
     [types.LOGOUT] (state) {
       state.token = null
+      state.loginUser = null
       localStorage.removeItem('token')
-    }
-  },
-  getters: {
-    token: state => {
-      return state.token
+      localStorage.removeItem('loginUser')
     }
   }
 })

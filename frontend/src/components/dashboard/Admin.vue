@@ -38,7 +38,7 @@
       <Submenu name="user" class="admin-nav">
         <template slot="title">
             <Icon type="happy-outline"></Icon>
-            {{username}}
+            {{loginUser}}
         </template>
         <MenuItem name="home">
           <Icon type="home"></Icon>
@@ -66,7 +66,7 @@ export default {
   data () {
     let currentPage = this.$router.currentRoute.path.split('/').pop()
     return {
-      username: '',
+      LoginUser: '',
       currentPage: currentPage
     }
   },
@@ -87,11 +87,13 @@ export default {
     }
   },
   created () {
-    this.$axios.get('/api/admin').then(response => {
-      this.username = response.data.username
-    }).catch(error => {
-      this.$Message.error(error)
-    })
+    const loginUser = this.$store.state.loginUser
+    if (loginUser) {
+      this.loginUser = loginUser
+    } else {
+      this.$Message.error('登录异常，重新登录')
+      this.$router.push('/login')
+    }
   }
 }
 </script>

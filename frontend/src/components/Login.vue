@@ -70,8 +70,12 @@ export default {
             msg()
             this.$Message.success('登录成功')
             let data = response.data
-            let token = data.token
-            this.$store.commit(types.LOGIN, token)
+            // data = {
+            //   token: '',
+            //   loginUser: ''
+            // }
+            let payload = data
+            this.$store.commit(types.LOGIN, payload)
             this.$router.push('/admin/statis')
           }).catch(error => {
             msg()

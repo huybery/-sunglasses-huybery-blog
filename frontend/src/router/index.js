@@ -28,15 +28,22 @@ const router = new Router({
 
 // 刷新页面时重新赋值 token
 if (localStorage.getItem('token')) {
-  store.commit(LOGIN, localStorage.token)
+  let payload = {
+    token: localStorage.token,
+    loginUser: localStorage.loginUser
+  }
+  store.commit(LOGIN, payload)
 }
 
 // 路由钩子方法
 router.beforeEach((to, from, next) => {
-  // console.log('now token: ' + localStorage.token)
   if (to.meta.requireAuth) {
-    if (localStorage.token) {
-      store.commit(LOGIN, localStorage.token)
+    if (localStorage.getItem('token') && localStorage.getItem('loginUser')) {
+      let payload = {
+        token: localStorage.token,
+        loginUser: localStorage.loginUser
+      }
+      store.commit(LOGIN, payload)
       let token = store.state.token
       axios.defaults.auth = {
         username: token,

@@ -4,13 +4,18 @@
         <Col :xs="20" :sm="16" :md="12" :lg="18">
             <Card>
                 <p slot="title">
-                    <Icon type="ios-list-outline"></Icon>
-                        用户列表
+                    用户列表
                 </p>
-                    <div class="edittable-table-height-con">
-                        <can-edit-table v-model="editInlineData" :columns-list="editInlineColumns">
-                        </can-edit-table>
-                    </div>
+                <div class="edittable-table-height-con">
+                    <can-edit-table
+                        v-model="editInlineData"
+                        :columns-list="editInlineColumns"
+                        @on-cell-change="handleCellChange"
+                        @on-delete="handleDel"
+                        :editIncell="true"
+                    >
+                    </can-edit-table>
+                </div>
             </Card>
         </Col>
     </Row>
@@ -69,7 +74,7 @@ export default {
           title: '操作',
           align: 'center',
           key: 'handle',
-          handle: ['edit', 'delete']
+          handle: ['delete']
         }
       ]
       return [editInlineAndCellData, editInlineColumns]
@@ -77,6 +82,12 @@ export default {
     setData () {
       this.editInlineData = this.getData()[0]
       this.editInlineColumns = this.getData()[1]
+    },
+    handleDel (val, index) {
+      this.$Message.success('删除了第' + (index + 1) + '行数据')
+    },
+    handleCellChange (val, index, key) {
+      this.$Message.success('修改了第 ' + (index + 1) + ' 行列名为 ' + key + ' 的数据')
     }
   },
   created () {
