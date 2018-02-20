@@ -13,14 +13,14 @@ from app import blog
 from app import auth
 from app.models import User
 
-@blog.route("/api/test")
+@blog.route('/api/test')
 def test_api():
 	response = {
 		'testNumber': random.randint(0, 100)
 	}
 	return jsonify(response)
 
-@blog.route("/api/register", methods=["POST"])
+@blog.route('/api/register', methods=["POST"])
 def register_user():
 	"""
 	注册用户
@@ -43,6 +43,17 @@ def register_user():
 	user.save()
 	return jsonify({'username': user.username})
 
+@blog.route('/api/user/<username>')
+def user_exist(username):
+	response = {
+		username: False
+	}
+	user_list = User.objects(username=username)
+	if len(user_list) > 0:
+		response[username] = True
+	return jsonify(response)
+
+
 @auth.verify_password
 def verify_password(username_or_token, password):
 	if request.path == '/api/login':
@@ -64,17 +75,15 @@ def verify_password(username_or_token, password):
 	g.user = user
 	return True
 
-@blog.route("/api/login")
+@blog.route('/api/login')
 @auth.login_required
 def get_auth_token():
 	"""
 	获取 token
 	"""
 	token = g.user.generate_auth_token()
-	return jsonify({'token': token.decode('ascii')})
-
-@blog.route("/api/admin")
-@auth.login_required
-def get_resouce():
-	return jsonify('Hello, %s' % g.user.username)
-
+	loginUser = g.user.username
+	return jsonify({
+		'token': token.decode('ascii'),
+		'loginUser': loginUser
+	})
