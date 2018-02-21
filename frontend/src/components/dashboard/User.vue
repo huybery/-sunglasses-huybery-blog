@@ -81,10 +81,10 @@ export default {
       this.editInlineColumns = editInlineColumns
     },
     handleDel (val, index) {
-      const uid = val.uid
+      let uid = val.uid
       this.$axios.delete('/api/user/' + uid)
         .then(response => {
-          const data = response.data
+          let data = response.data
           this.$Message.success('成功删除用户: ' + data.username)
         })
         .catch(err => {
@@ -92,7 +92,25 @@ export default {
         })
     },
     handleCellChange (val, index, key) {
-      this.$Message.success('修改了第 ' + (index + 1) + ' 行列名为 ' + key + ' 的数据')
+      let uid = val[index]['uid']
+      let changeAttr = val[index][key]
+      let changeDict = {
+        [key]: changeAttr
+      }
+      this.$axios.put('/api/user/' + uid, changeDict)
+        .then(response => {
+          let data = response.data
+          if (data.err_code === 0) {
+            this.$Message.success('修改了第 ' + (index + 1) + ' 行列名为 ' + key + ' 的数据')
+          }
+          if (data.err_code === 1) {
+            this.setData()
+            this.$Message.error('修改失败，用户名已存在')
+          }
+        })
+        .catch(err => {
+          this.$Message.error(err)
+        })
     }
   },
   created () {
