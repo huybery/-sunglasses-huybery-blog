@@ -87,3 +87,42 @@ def get_auth_token():
 		'token': token.decode('ascii'),
 		'loginUser': loginUser
 	})
+
+@blog.route('/api/user', methods=['GET'])
+# @auth.login_required
+def get_user_list():
+	response = []
+	for user in User.objects():
+		user_info = {
+			"uid": str(user.id),
+			"username": user.username,
+			"password": "**********"
+		}
+		response.append(user_info)
+	return jsonify(response)
+
+@blog.route('/api/user/<uid>', methods=['DELETE', 'PUT'])
+def rest_user(uid):
+	if request.method == 'DELETE':
+		return del_user(uid)
+	elif request.method == 'PUT':
+		return put_user(uid)
+
+def del_user(uid):
+	user = User.objects(id=uid)[0]
+	username = user.username
+	num = user.delete()
+	response = {
+		"username": username,
+		"delnumber": num
+	}
+	return jsonify(response)
+
+def put_user(uid):
+	user = User.objects(id=uid)[0]
+	data = request.get_json()
+	response = {
+		"username": username,
+		"putnumber": 1
+	}
+	return jsonify(response)
