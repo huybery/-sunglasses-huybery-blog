@@ -66,23 +66,25 @@ export default {
           const msg = this.$Message.loading({
             content: '登录中...'
           })
-          this.$axios.get('/api/login').then(response => {
-            msg()
-            this.$Message.success('登录成功')
-            let data = response.data
-            // data = {
-            //   token: '',
-            //   loginUser: ''
-            // }
-            let payload = data
-            this.$store.commit(types.LOGIN, payload)
-            this.$router.push('/admin/statis')
-          }).catch(error => {
-            msg()
-            if (error === 'Unauthorized Access') {
-              this.$Message.error('账户名/密码有误!')
-            }
-          })
+          this.$axios.get('/api/login')
+            .then(response => {
+              msg()
+              this.$Message.success('登录成功')
+              let data = response.data
+              // data = {
+              //   token: '',
+              //   loginUser: ''
+              // }
+              let payload = data
+              this.$store.commit(types.LOGIN, payload)
+              this.$router.push('/admin/statis')
+            })
+            .catch(error => {
+              msg()
+              if (error === 'Unauthorized Access') {
+                this.$Message.error('账户名/密码有误!')
+              }
+            })
         } else {
           this.$Message.error('表单验证失败!')
         }

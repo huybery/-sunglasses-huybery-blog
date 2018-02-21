@@ -35,16 +35,18 @@ export default {
     const validateUser = (rule, value, callback) => {
       let username = value
       if (username === '') { callback(new Error('请填写用户名')) }
-      this.$axios.get('/api/user/' + username).then(response => {
-        if (response.data[username]) {
-          callback(new Error('用户已经存在'))
-        } else {
-          callback()
-        }
-      }).catch(error => {
-        this.$Message.error(error)
-        this.$refs[name].resetFields()
-      })
+      this.$axios.get('/api/user/' + username)
+        .then(response => {
+          if (response.data[username]) {
+            callback(new Error('用户已经存在'))
+          } else {
+            callback()
+          }
+        })
+        .catch(error => {
+          this.$Message.error(error)
+          this.$refs[name].resetFields()
+        })
     }
     return {
       formInline: {
@@ -70,18 +72,19 @@ export default {
             username: form.username,
             password: form.password
           }
-          this.$axios.post('/api/register', user).then(response => {
-            this.$Message.success('注册成功')
-            let data = response.data
-            this.$Message.success(data.username + '注册成功，请登录')
-            this.$router.push('login')
-          }).catch(error => {
-            console.log(error)
-            if (error === 'User Has Exist') {
-              this.$Message.error('账号已存在!')
-              this.$refs[name].resetFields()
-            }
-          })
+          this.$axios.post('/api/register', user)
+            .then(response => {
+              this.$Message.success('注册成功')
+              let data = response.data
+              this.$Message.success(data.username + '注册成功，请登录')
+              this.$router.push('login')
+            })
+            .catch(error => {
+              if (error === 'User Has Exist') {
+                this.$Message.error('账号已存在!')
+                this.$refs[name].resetFields()
+              }
+            })
         } else {
           this.$Message.error('表单验证失败!')
         }

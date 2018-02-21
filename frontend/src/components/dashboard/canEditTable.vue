@@ -1,6 +1,7 @@
 <template>
     <div>
-        <Table :ref="refs" :columns="columnsList" :data="thisTableData" border disabled-hover></Table>
+        <Table :ref="refs" :columns="columnsList" :data="thisTableData" border>
+        </Table>
     </div>
 </template>
 
@@ -48,9 +49,12 @@ const deleteButton = (vm, h, currentRow, index) => {
     },
     on: {
       'on-ok': () => {
+        let deletedDate = vm.thisTableData.splice(index, 1)[0]
+        console.log(deletedDate)
         vm.thisTableData.splice(index, 1)
         vm.$emit('input', vm.handleBackdata(vm.thisTableData))
-        vm.$emit('on-delete', vm.handleBackdata(vm.thisTableData), index)
+        // vm.$emit('on-delete', vm.handleBackdata(vm.thisTableData), index)
+        vm.$emit('on-delete', deletedDate, index)
       }
     }
   }, [

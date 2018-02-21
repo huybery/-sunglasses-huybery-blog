@@ -35,23 +35,23 @@ export default {
   },
   methods: {
     getData () {
-      const editInlineAndCellData = [
-        {
-          name: 'Aresn',
-          //   sex: '男',
-          work: '前端开发'
-        },
-        {
-          name: 'Lison',
-          //   sex: '男',
-          work: '前端开发'
-        },
-        {
-          name: 'lisa',
-          //   sex: '女',
-          work: '程序员鼓励师'
+      let editInlineData = []
+      this.$axios.get('/api/user').then(response => {
+        const data = response.data
+        for (var user of data) {
+          let cellData = {
+            username: user.username,
+            password: user.password,
+            uid: user.uid
+          }
+          editInlineData.push(cellData)
         }
-      ]
+      }).catch(err => {
+        this.$Message.error(err)
+      })
+      return editInlineData
+    },
+    setData () {
       const editInlineColumns = [
         {
           title: '序号',
@@ -61,13 +61,13 @@ export default {
         {
           title: '用户名',
           align: 'center',
-          key: 'name',
+          key: 'username',
           editable: true
         },
         {
-          title: '岗位',
+          title: '密码',
           align: 'center',
-          key: 'work',
+          key: 'password',
           editable: true
         },
         {
@@ -77,14 +77,19 @@ export default {
           handle: ['delete']
         }
       ]
-      return [editInlineAndCellData, editInlineColumns]
-    },
-    setData () {
-      this.editInlineData = this.getData()[0]
-      this.editInlineColumns = this.getData()[1]
+      this.editInlineData = this.getData()
+      this.editInlineColumns = editInlineColumns
     },
     handleDel (val, index) {
-      this.$Message.success('删除了第' + (index + 1) + '行数据')
+      const uid = val.uid
+      this.$axios.delete('/api/user/' + uid)
+        .then(response => {
+          const data = response.data
+          this.$Message.success('成功删除用户: ' + data.username)
+        })
+        .catch(err => {
+          this.$Message.error(err)
+        })
     },
     handleCellChange (val, index, key) {
       this.$Message.success('修改了第 ' + (index + 1) + ' 行列名为 ' + key + ' 的数据')
