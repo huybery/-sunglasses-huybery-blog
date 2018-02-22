@@ -109,47 +109,46 @@ def rest_user(uid):
 	"""
 	CUDR User
 	"""
+	def _del_user(uid):
+		"""
+		根据 uid 删除用户
+		"""
+		user = User.objects(id=uid)[0]
+		username = user.username
+		user.delete()
+		response = {
+			"username": username,
+			"type": "delete",
+			"error_code": 0
+		}
+		return jsonify(response)
+
+	def _put_user(uid):
+		"""
+		根据 uid 修改用户的 username, password
+		"""
+		user = User.objects(id=uid)[0]
+		data = request.get_json()
+		if 'username' in data:
+			if len(User.objects(username=data.get('username'))) > 0:
+				response = {
+					"type": "put",
+					"err_code": 1
+				}
+				return jsonify(response)
+			else:
+				user.username = data.get('username')
+		elif 'password' in data:
+			user.hash_password(data.get('password'))
+		username = user.username
+		user.save()
+		response = {
+			"username": username,
+			"type": 'put',
+			"err_code": 0
+		}
+		return jsonify(response)
 	if request.method == 'DELETE':
-		return del_user(uid)
+		return _del_user(uid)
 	elif request.method == 'PUT':
-		return put_user(uid)
-
-def del_user(uid):
-	"""
-	根据 uid 删除用户
-	"""
-	user = User.objects(id=uid)[0]
-	username = user.username
-	user.delete()
-	response = {
-		"username": username,
-		"type": "delete",
-		"error_code": 0
-	}
-	return jsonify(response)
-
-def put_user(uid):
-	"""
-	根据 uid 修改用户的 username, password
-	"""
-	user = User.objects(id=uid)[0]
-	data = request.get_json()
-	if 'username' in data:
-		if len(User.objects(username=data.get('username'))) > 0:
-			response = {
-				"type": "put",
-				"err_code": 1
-			}
-			return jsonify(response)
-		else:
-			user.username = data.get('username')
-	elif 'password' in data:
-		user.hash_password(data.get('password'))
-	username = user.username
-	user.save()
-	response = {
-		"username": username,
-		"type": 'put',
-		"err_code": 0
-	}
-	return jsonify(response)
+		return _put_user(uid)
