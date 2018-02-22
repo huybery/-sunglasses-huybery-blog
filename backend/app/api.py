@@ -34,11 +34,10 @@ def register_user():
 		abort(400)
 	if len(User.objects(username=username)) > 0:
 		# existing user
-		print(User.objects(username=username))
 		print("username has exist")
 		abort(400)
 	user = User()
-	user.username = data.get('username')
+	user.username = username
 	user.hash_password(password)
 	user.save()
 	return jsonify({'username': user.username})
@@ -89,8 +88,11 @@ def get_auth_token():
 	})
 
 @blog.route('/api/user', methods=['GET'])
-# @auth.login_required
+@auth.login_required
 def get_user_list():
+	"""
+	获取所有用户列表
+	"""
 	response = []
 	for user in User.objects():
 		user_info = {
@@ -102,27 +104,52 @@ def get_user_list():
 	return jsonify(response)
 
 @blog.route('/api/user/<uid>', methods=['DELETE', 'PUT'])
+@auth.login_required
 def rest_user(uid):
+	"""
+	CUDR User
+	"""
 	if request.method == 'DELETE':
 		return del_user(uid)
 	elif request.method == 'PUT':
 		return put_user(uid)
 
 def del_user(uid):
+	"""
+	根据 uid 删除用户
+	"""
 	user = User.objects(id=uid)[0]
 	username = user.username
-	num = user.delete()
+	user.delete()
 	response = {
 		"username": username,
-		"delnumber": num
+		"type": "delete",
+		"error_code": 0
 	}
 	return jsonify(response)
 
 def put_user(uid):
+	"""
+	根据 uid 修改用户的 username, password
+	"""
 	user = User.objects(id=uid)[0]
 	data = request.get_json()
+	if 'username' in data:
+		if len(User.objects(username=data.get('username'))) > 0:
+			response = {
+				"type": "put",
+				"err_code": 1
+			}
+			return jsonify(response)
+		else:
+			user.username = data.get('username')
+	elif 'password' in data:
+		user.hash_password(data.get('password'))
+	username = user.username
+	user.save()
 	response = {
 		"username": username,
-		"putnumber": 1
+		"type": 'put',
+		"err_code": 0
 	}
 	return jsonify(response)
