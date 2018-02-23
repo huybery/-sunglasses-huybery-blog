@@ -1,3 +1,6 @@
+"""
+model for user
+"""
 from app import blog
 from app import db
 from passlib.apps import custom_app_context
