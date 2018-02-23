@@ -12,6 +12,7 @@ import random
 from app import blog
 from app import auth
 from app.models import User
+from app.models import Post
 
 @blog.route('/api/test')
 def test_api():
@@ -30,11 +31,9 @@ def register_user():
 	password = data.get('password')
 	if username is None or password is None:
 		# missing auguments
-		print("missing")
 		abort(400)
 	if len(User.objects(username=username)) > 0:
 		# existing user
-		print("username has exist")
 		abort(400)
 	user = User()
 	user.username = username
@@ -119,7 +118,7 @@ def rest_user(uid):
 		response = {
 			"username": username,
 			"type": "delete",
-			"error_code": 0
+			"err_code": 0
 		}
 		return jsonify(response)
 
@@ -152,3 +151,37 @@ def rest_user(uid):
 		return _del_user(uid)
 	elif request.method == 'PUT':
 		return _put_user(uid)
+
+@blog.route('/api/post', methods=['POST', 'GET'])
+def add_post():
+	def _add_post():
+		"""
+		增加文章
+		"""
+		data = request.get_json()
+		title = data.get('title')
+		body = data.get('body')
+		post = Post(title=title, body=body)
+		post.add_views(init=True)
+		post.save()
+		return jsonify({
+			"err_code": 0,
+		})
+	def _get_post():
+		"""
+		获取文章列表
+		"""
+		response = []
+		for post in Post.objects:
+			post_info = {
+				"id": str(post.id),
+				"title": post.title,
+			}
+			response.append(post_info)
+		return jsonify(
+			response
+		)
+	if request.method == 'POST':
+		return _add_post()
+	elif request.method == 'GET':
+		return _get_post()
