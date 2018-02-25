@@ -185,3 +185,14 @@ def add_post():
 		return _add_post()
 	elif request.method == 'GET':
 		return _get_post()
+
+@blog.route('/api/post/<pid>', method=['PUT', 'DELETE'])
+def change_post(pid):
+	__put_post():
+		pass
+	__del_post():
+		pass
+	if request.method == 'PUT':
+		return __put_post()
+	elif request.method == 'DELETE':
+		return __del_post()
