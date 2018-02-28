@@ -194,6 +194,13 @@ class PostListAPI(Resource):
 			location=['json', 'args']
 		)
 		self.reqparse.add_argument(
+			'mark',
+			type=str,
+			required=True,
+			help='No mark title provided',
+			location=['json', 'args']
+		)
+		self.reqparse.add_argument(
 			'body',
 			type=str,
 			default='',
@@ -260,7 +267,18 @@ class PostAPI(Resource):
 		pass
 
 	def delete(self, id):
-		pass
+		post = Post.objects(id=id)
+		if len(post) == 0:
+			abort(404)
+		post = post[0]
+		title = post.title
+		post.delete()
+		return {
+			'title': title,
+			'type': 'delete',
+			'err_code': 0
+		}
+		
 
 api.add_resource(PostListAPI, '/api/v1/posts', endpoint='posts')
 api.add_resource(PostAPI, '/api/v1/post/<id>', endpoint='post')
