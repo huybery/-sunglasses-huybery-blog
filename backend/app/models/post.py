@@ -12,6 +12,7 @@ class Post(db.Document):
     """
     title = db.StringField(require=True)
     body = db.StringField(require=True)
+    mark = db.StringField(require=True)
     # tag = db.StringField()
     views = db.IntField(require=True)
     timestamp = db.DateTimeField(require=True, default=datetime.datetime.now())
@@ -22,6 +23,7 @@ class Post(db.Document):
                 'title': self.title,
                 'body': self.body,
                 'views': self.views, 
+                'mark': self.mark,
                 'timestamp': self.timestamp.strftime("%Y-%m-%d")
         }}
         return new_post

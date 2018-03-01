@@ -218,6 +218,7 @@ class PostListAPI(Resource):
 			post_info = {
 				"id": str(post.id),
 				"title": post.title,
+				"mark": post.mark
 			}
 			# ids => uri
 			post_info = make_public_post(post_info)
@@ -232,7 +233,14 @@ class PostListAPI(Resource):
 		args = self.reqparse.parse_args()
 		title = args.get('title')
 		body = args.get('body')
-		post = Post(title=title, body=body)
+		mark = args.get('mark')
+		if len(Post.objects(title=title)) > 0:
+			# title same
+			abort(400)
+		if len(Post.objects(mark=mark)) > 0:
+			# mark same
+			abort(400)
+		post = Post(title=title, body=body, mark=mark)
 		post.add_views(init=True)
 		post.save()
 		return post.get_dict(), 201
@@ -252,6 +260,13 @@ class PostAPI(Resource):
 			location=['json', 'args']
 		)
 		self.reqparse.add_argument(
+			'mark',
+			type=str,
+			required=True,
+			help='No mark title provided',
+			location=['json', 'args']
+		)
+		self.reqparse.add_argument(
 			'body',
 			type=str,
 			default='',
@@ -261,12 +276,55 @@ class PostAPI(Resource):
 		super(PostAPI, self).__init__()
 
 	def get(self, id):
-		pass
+		"""
+		Input: id
+		Method: GET
+		Return: 获取文章信息
+		"""
+		post = Post.objects(id=id)
+		if len(post) == 0:
+			abort(404)
+		post = post[0]
+		post.add_views()
+		post.save()
+		return post.get_dict()
 
 	def put(self, id):
-		pass
+		"""
+		Input: id
+		Method: PUT
+		Return: 更新文章信息
+		"""
+		args = self.reqparse.parse_args()
+		post = Post.objects(id=id)
+		if len(post) == 0:
+			abort(404)
+		post = post[0]
+		title = args.get('title')
+		body = args.get('body')
+		mark = args.get('mark')
+		post.body = body
+		if title != post.title:
+			if len(Post.objects(title=title)) > 0:
+				# title same
+				abort(400)
+			post.title = title
+		if mark != post.mark:
+			if len(Post.objects(mark=mark)) > 0:
+				# mark same
+				abort(400)
+			post.mark = mark
+		post.save()
+		# For a PUT request: HTTP 200 or HTTP 204 should imply "resource updated successfully".
+		print(post.get_dict())
+		return post.get_dict(), 200
 
 	def delete(self, id):
+		"""
+		Input: id
+		Method: DEL
+		Return: 删除文章
+		"""
 		post = Post.objects(id=id)
 		if len(post) == 0:
 			abort(404)
